@@ -1,0 +1,5 @@
+{
+  "name": "DövizTakip",
+  "description": "Turkish Currency and Inflation Calculator tool with live rates, gold prices, and historical charts.",
+  "requestFramePermissions": []
+}

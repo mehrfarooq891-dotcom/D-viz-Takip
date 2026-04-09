@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>DövizTakip | Canlı Döviz Kurları ve Enflasyon Hesaplama</title>
+    <meta name="description" content="Türkiye'nin en gelişmiş döviz takip ve enflasyon hesaplama aracı. USD, EUR, GBP kurları, altın fiyatları ve TÜFE verileri ile birikimlerinizi takip edin.">
+    <meta name="keywords" content="döviz, dolar, euro, altın fiyatları, enflasyon hesaplama, tüfe, kur takibi, döviz çevirici">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://doviztakip.com/">
+    <meta property="og:title" content="DövizTakip | Canlı Döviz Kurları ve Enflasyon Hesaplama">
+    <meta property="og:description" content="Türkiye'nin en gelişmiş döviz takip ve enflasyon hesaplama aracı.">
+    <meta property="og:image" content="https://picsum.photos/seed/finance/1200/630">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="DövizTakip | Canlı Döviz Kurları ve Enflasyon Hesaplama">
+    <meta property="twitter:description" content="Türkiye'nin en gelişmiş döviz takip ve enflasyon hesaplama aracı.">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialCalculator",
+      "name": "DövizTakip",
+      "description": "Turkish Currency and Inflation Calculator",
+      "url": "https://doviztakip.com/",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TRY"
+      }
+    }
+    </script>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #0a0e27;
+            --card-bg: #161b3d;
+            --primary: #e84042; /* Turkish Red */
+            --secondary: #f5c842; /* Gold */
+            --text-main: #ffffff;
+            --text-muted: #a0aec0;
+            --border: rgba(255, 255, 255, 0.1);
+            --success: #48bb78;
+            --font-main: 'Nunito', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Ad Placeholders */
+        .ad-banner {
+            background: #1a204d;
+            border: 1px dashed var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            margin: 20px 0;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ad-728x90 { width: 100%; height: 90px; max-width: 728px; margin-left: auto; margin-right: auto; }
+        .ad-300x250 { width: 300px; height: 250px; margin: 20px auto; }
+        .ad-320x50 { width: 320px; height: 50px; margin: 10px auto; display: none; }
+
+        @media (max-width: 768px) {
+            .ad-728x90 { display: none; }
+            .ad-320x50 { display: flex; }
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: var(--primary);
+        }
+
+        /* Converter */
+        .converter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input, .input-wrapper select {
+            width: 100%;
+            background: #0a0e27;
+            border: 1px solid var(--border);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-wrapper input:focus {
+            border-color: var(--primary);
+        }
+
+        .input-label {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: var(--card-bg);
+            padding: 0 5px;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .swap-btn {
+            align-self: center;
+            background: var(--primary);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s ease;
+        }
+
+        .swap-btn:hover {
+            transform: rotate(180deg);
+        }
+
+        .quick-select {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .quick-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .quick-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .result-display {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(232, 64, 66, 0.1);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .result-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .result-timestamp {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* Gold Tracker */
+        .gold-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .gold-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .gold-name {
+            font-weight: 700;
+        }
+
+        .gold-price {
+            font-weight: 800;
+            color: var(--secondary);
+        }
+
+        /* Inflation Calculator */
+        .inflation-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .inflation-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .inflation-result {
+            margin-top: 20px;
+            line-height: 1.4;
+        }
+
+        .inflation-highlight {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        /* Power Erosion Chart (CSS Bar) */
+        .erosion-chart {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .erosion-bar-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .erosion-label {
+            width: 80px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .erosion-bar-bg {
+            flex: 1;
+            height: 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .erosion-bar-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 0;
+            transition: width 1s ease-out;
+        }
+
+        /* Cost of Living Table */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            color: var(--text-muted);
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        /* Affiliate Cards */
+        .affiliate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .affiliate-card {
+            background: #1a204d;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.3s;
+        }
+
+        .affiliate-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .affiliate-logo {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 24px;
+        }
+
+        .affiliate-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+
+        /* FAQ */
+        .faq-section {
+            margin-top: 40px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            background: rgba(255,255,255,0.03);
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.01);
+            color: var(--text-muted);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 15px 20px;
+            max-height: 200px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Skeleton Loading */
+        .skeleton {
+            background: linear-gradient(90deg, #161b3d 25%, #1e2554 50%, #161b3d 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 4px;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Utility */
+        .hidden { display: none; }
+        
+        /* RTL Support for Arabic */
+        [dir="rtl"] {
+            text-align: right;
+        }
+        [dir="rtl"] .card-title {
+            flex-direction: row-reverse;
+        }
+        [dir="rtl"] .gold-item {
+            border-left: none;
+            border-right: 4px solid var(--secondary);
+        }
+        [dir="rtl"] th, [dir="rtl"] td {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                Döviz<span>Takip</span>
+            </a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLanguage('tr')" data-lang="tr">🇹🇷 TR</button>
+                <button class="lang-btn" onclick="setLanguage('en')" data-lang="en">🇺🇸 EN</button>
+                <button class="lang-btn" onclick="setLanguage('de')" data-lang="de">🇩🇪 DE</button>
+                <button class="lang-btn" onclick="setLanguage('ru')" data-lang="ru">🇷🇺 RU</button>
+                <button class="lang-btn" onclick="setLanguage('ar')" data-lang="ar">🇸🇦 AR</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="ad-banner ad-728x90">Reklam Alanı (728x90)</div>
+        <div class="ad-banner ad-320x50">Reklam Alanı (320x50)</div>
+
+        <main class="main-grid">
+            
+            <!-- Left Column -->
+            <div class="content-left">
+                
+                <!-- Currency Converter -->
+                <section class="card">
+                    <h2 class="card-title"><i class="icon-converter">🔄</i> <span data-t="converter_title">Döviz Çevirici</span></h2>
+                    <div class="converter-group">
+                        <div class="input-wrapper">
+                            <span class="input-label" data-t="amount">Miktar</span>
+                            <input type="number" id="convert-amount" value="100" oninput="calculateConversion()">
+                        </div>
+                        
+                        <div style="display: flex; gap: 15px; align-items: center;">
+                            <div class="input-wrapper" style="flex: 1;">
+                                <span class="input-label" data-t="from">Kaynak</span>
+                                <select id="from-currency" onchange="calculateConversion()">
+                                    <option value="TRY">TRY - Türk Lirası</option>
+                                    <option value="USD">USD - US Dollar</option>
+                                    <option value="EUR">EUR - Euro</option>
+                                    <option value="GBP">GBP - British Pound</option>
+                                    <option value="CHF">CHF - Swiss Franc</option>
+                                    <option value="SAR">SAR - Saudi Riyal</option>
+                                    <option value="AED">AED - UAE Dirham</option>
+                                    <option value="RUB">RUB - Russian Ruble</option>
+                                    <option value="JPY">JPY - Japanese Yen</option>
+                                </select>
+                            </div>
+                            
+                            <button class="swap-btn" onclick="swapCurrencies()">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M7 16V4M7 4L3 8M7 4L11 8M17 8v12M17 20l4-4M17 20l-4-4"/></svg>
+                            </button>
+                            
+                            <div class="input-wrapper" style="flex: 1;">
+                                <span class="input-label" data-t="to">Hedef</span>
+                                <select id="to-currency" onchange="calculateConversion()">
+                                    <option value="USD" selected>USD - US Dollar</option>
+                                    <option value="TRY">TRY - Türk Lirası</option>
+                                    <option value="EUR">EUR - Euro</option>
+                                    <option value="GBP">GBP - British Pound</option>
+                                    <option value="CHF">CHF - Swiss Franc</option>
+                                    <option value="SAR">SAR - Saudi Riyal</option>
+                                    <option value="AED">AED - UAE Dirham</option>
+                                    <option value="RUB">RUB - Russian Ruble</option>
+                                    <option value="JPY">JPY - Japanese Yen</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="quick-select">
+                            <button class="quick-btn" onclick="setAmount(100)">100</button>
+                            <button class="quick-btn" onclick="setAmount(500)">500</button>
+                            <button class="quick-btn" onclick="setAmount(1000)">1.000</button>
+                            <button class="quick-btn" onclick="setAmount(5000)">5.000</button>
+                            <button class="quick-btn" onclick="setAmount(10000)">10.000</button>
+                        </div>
+
+                        <div class="result-display">
+                            <div class="result-value" id="conversion-result">0.00</div>
+                            <div class="result-timestamp" id="last-updated">Yükleniyor...</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Historical Chart -->
+                <section class="card">
+                    <h2 class="card-title">📈 <span data-t="chart_title">USD/TRY 12 Aylık Değişim</span></h2>
+                    <div style="height: 300px; position: relative;">
+                        <canvas id="historyChart"></canvas>
+                    </div>
+                </section>
+
+                <!-- Inflation Calculator -->
+                <section class="card">
+                    <h2 class="card-title">📉 <span data-t="inflation_title">Enflasyon Hesaplayıcı (TÜFE)</span></h2>
+                    <div class="inflation-form">
+                        <div class="input-wrapper">
+                            <span class="input-label" data-t="amount">Miktar (TL)</span>
+                            <input type="number" id="inf-amount" value="1000" oninput="calculateInflation()">
+                        </div>
+                        <div class="input-wrapper">
+                            <span class="input-label" data-t="start_year">Başlangıç Yılı</span>
+                            <select id="inf-year" onchange="calculateInflation()">
+                                <option value="2010">2010</option>
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018" selected>2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="inflation-result" id="inflation-text">
+                        <!-- Dynamic Text -->
+                    </div>
+                    <div class="erosion-chart" id="erosion-bars">
+                        <!-- Dynamic Bars -->
+                    </div>
+                </section>
+
+                <!-- Cost of Living -->
+                <section class="card">
+                    <h2 class="card-title">🛒 <span data-t="col_title">Yaşam Maliyeti Karşılaştırması</span></h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-t="item">Ürün</th>
+                                    <th data-t="price_try">Fiyat (TRY)</th>
+                                    <th data-t="price_usd">Fiyat (USD)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="col-table-body">
+                                <!-- Dynamic Rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Right Column -->
+            <div class="content-right">
+                
+                <!-- Gold Tracker -->
+                <section class="card">
+                    <h2 class="card-title">✨ <span data-t="gold_title">Altın Fiyatları</span></h2>
+                    <div class="gold-list" id="gold-container">
+                        <div class="gold-item skeleton" style="height: 50px;"></div>
+                        <div class="gold-item skeleton" style="height: 50px;"></div>
+                        <div class="gold-item skeleton" style="height: 50px;"></div>
+                        <div class="gold-item skeleton" style="height: 50px;"></div>
+                    </div>
+                </section>
+
+                <div class="ad-banner ad-300x250">Reklam Alanı (300x250)</div>
+
+                <!-- Best Exchange Offices -->
+                <section class="card">
+                    <h2 class="card-title">🏦 <span data-t="offices_title">En İyi Döviz Büroları</span></h2>
+                    <div class="affiliate-grid">
+                        <div class="affiliate-card">
+                            <div class="affiliate-logo">A</div>
+                            <h3 data-t="office_1">Kapalıçarşı Döviz</h3>
+                            <p style="font-size: 12px; color: var(--text-muted);" data-t="office_desc">En iyi kurlar ve hızlı işlem.</p>
+                            <a href="#" class="affiliate-btn" data-t="visit">Ziyaret Et</a>
+                        </div>
+                        <div class="affiliate-card">
+                            <div class="affiliate-logo">B</div>
+                            <h3 data-t="office_2">Global FX</h3>
+                            <p style="font-size: 12px; color: var(--text-muted);" data-t="office_desc">Hızlı işlem, düşük komisyon.</p>
+                            <a href="#" class="affiliate-btn" data-t="visit">Ziyaret Et</a>
+                        </div>
+                        <div class="affiliate-card">
+                            <div class="affiliate-logo">C</div>
+                            <h3 data-t="office_3">Anadolu Sarraf</h3>
+                            <p style="font-size: 12px; color: var(--text-muted);" data-t="office_desc">Güvenilir altın ve döviz ticareti.</p>
+                            <a href="#" class="affiliate-btn" data-t="visit">Ziyaret Et</a>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </main>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2 class="card-title" style="justify-content: center; margin-bottom: 30px;">❓ <span data-t="faq_title">Sıkça Sorulan Sorular</span></h2>
+            <div id="faq-container" style="max-width: 800px; margin: 0 auto;">
+                <!-- Dynamic FAQ -->
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 DövizTakip. <span data-t="footer_text">Tüm hakları saklıdır. Veriler bilgilendirme amaçlıdır.</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Configuration & Data ---
+        const API_URL = 'https://open.er-api.com/v6/latest/TRY';
+        const TUFE_DATA = {
+            2010: 8.57, 2011: 10.45, 2012: 6.16, 2013: 7.40, 2014: 8.17,
+            2015: 8.81, 2016: 8.53, 2017: 11.92, 2018: 20.30, 2019: 11.84,
+            2020: 14.60, 2021: 19.60, 2022: 72.31, 2023: 64.77, 2024: 65.00
+        };
+
+        const TRANSLATIONS = {
+            tr: {
+                converter_title: 'Döviz Çevirici',
+                amount: 'Miktar',
+                from: 'Kaynak',
+                to: 'Hedef',
+                chart_title: 'USD/TRY 12 Aylık Değişim',
+                inflation_title: 'Enflasyon Hesaplayıcı (TÜFE)',
+                start_year: 'Başlangıç Yılı',
+                col_title: 'Yaşam Maliyeti Karşılaştırması',
+                item: 'Ürün',
+                price_try: 'Fiyat (TRY)',
+                price_usd: 'Fiyat (USD)',
+                gold_title: 'Altın Fiyatları',
+                offices_title: 'En İyi Döviz Büroları',
+                office_1: 'Kapalıçarşı Döviz',
+                office_2: 'Global FX',
+                office_3: 'Anadolu Sarraf',
+                office_desc: 'En iyi kurlar ve hızlı işlem.',
+                visit: 'Ziyaret Et',
+                faq_title: 'Sıkça Sorulan Sorular',
+                footer_text: 'Tüm hakları saklıdır. Veriler bilgilendirme amaçlıdır.',
+                gram_gold: 'Gram Altın',
+                ceyrek_gold: 'Çeyrek Altın',
+                yarim_gold: 'Yarım Altın',
+                tam_gold: 'Tam Altın',
+                inf_msg: '{year} yılındaki {amount} TL, bugün reel olarak sadece {result} TL değerindedir.',
+                faq_q1: 'Kurlar ne sıklıkla güncelleniyor?',
+                faq_a1: 'Döviz kurları her 10 dakikada bir güncellenmektedir.',
+                faq_q2: 'TÜFE nasıl hesaplanıyor?',
+                faq_a2: 'TÜFE verileri resmi istatistik kurumlarından alınan yıllık enflasyon oranları ile hesaplanır.',
+                faq_q3: 'Altın fiyatları nereden geliyor?',
+                faq_a3: 'Altın fiyatları uluslararası ons fiyatı ve güncel dolar kuru üzerinden hesaplanır.',
+                faq_q4: 'Bu site ücretsiz mi?',
+                faq_a4: 'Evet, tüm araçlarımız tamamen ücretsizdir.',
+                faq_q5: 'Mobilde çalışıyor mu?',
+                faq_a5: 'Evet, sitemiz tüm mobil cihazlarla tam uyumludur.',
+                faq_q6: 'Hangi para birimleri destekleniyor?',
+                faq_a6: 'USD, EUR, GBP, CHF, SAR, AED, RUB ve JPY birimlerini destekliyoruz.'
+            },
+            en: {
+                converter_title: 'Currency Converter',
+                amount: 'Amount',
+                from: 'From',
+                to: 'To',
+                chart_title: 'USD/TRY 12-Month Trend',
+                inflation_title: 'Inflation Calculator (CPI)',
+                start_year: 'Start Year',
+                col_title: 'Cost of Living Comparison',
+                item: 'Item',
+                price_try: 'Price (TRY)',
+                price_usd: 'Price (USD)',
+                gold_title: 'Gold Prices',
+                offices_title: 'Best Exchange Offices',
+                office_1: 'Grand Bazaar FX',
+                office_2: 'Global FX',
+                office_3: 'Anatolia Gold',
+                office_desc: 'Best rates and fast service.',
+                visit: 'Visit',
+                faq_title: 'Frequently Asked Questions',
+                footer_text: 'All rights reserved. Data is for informational purposes.',
+                gram_gold: 'Gram Gold',
+                ceyrek_gold: 'Quarter Gold',
+                yarim_gold: 'Half Gold',
+                tam_gold: 'Full Gold',
+                inf_msg: '{amount} TRY from {year} is worth only {result} TRY today in real terms.',
+                faq_q1: 'How often are rates updated?',
+                faq_a1: 'Currency rates are updated every 10 minutes.',
+                faq_q2: 'How is CPI calculated?',
+                faq_a2: 'CPI data is calculated using annual inflation rates from official statistics.',
+                faq_q3: 'Where does gold price come from?',
+                faq_a3: 'Gold prices are calculated based on international spot prices and USD/TRY rate.',
+                faq_q4: 'Is this site free?',
+                faq_a4: 'Yes, all our tools are completely free to use.',
+                faq_q5: 'Does it work on mobile?',
+                faq_a5: 'Yes, our site is fully responsive on all mobile devices.',
+                faq_q6: 'Which currencies are supported?',
+                faq_a6: 'We support USD, EUR, GBP, CHF, SAR, AED, RUB, and JPY.'
+            },
+            de: {
+                converter_title: 'Währungsrechner',
+                amount: 'Betrag',
+                from: 'Von',
+                to: 'Nach',
+                chart_title: 'USD/TRY 12-Monats-Trend',
+                inflation_title: 'Inflationsrechner (VPI)',
+                start_year: 'Startjahr',
+                col_title: 'Lebenshaltungskosten-Vergleich',
+                item: 'Artikel',
+                price_try: 'Preis (TRY)',
+                price_usd: 'Preis (USD)',
+                gold_title: 'Goldpreise',
+                offices_title: 'Beste Wechselstuben',
+                office_1: 'Basar Devisen',
+                office_2: 'Global FX',
+                office_3: 'Anatolien Gold',
+                office_desc: 'Beste Kurse und schneller Service.',
+                visit: 'Besuchen',
+                faq_title: 'Häufig gestellte Fragen',
+                footer_text: 'Alle Rechte vorbehalten. Daten dienen nur zur Information.',
+                gram_gold: 'Gramm Gold',
+                ceyrek_gold: 'Viertel Gold',
+                yarim_gold: 'Halbes Gold',
+                tam_gold: 'Vollgold',
+                inf_msg: '{amount} TRY aus {year} sind heute real nur noch {result} TRY wert.',
+                faq_q1: 'Wie oft werden die Kurse aktualisiert?',
+                faq_a1: 'Die Wechselkurse werden alle 10 Minuten aktualisiert.',
+                faq_q2: 'Wie wird der VPI berechnet?',
+                faq_a2: 'VPI-Daten werden anhand der jährlichen Inflationsraten aus offiziellen Statistiken berechnet.',
+                faq_q3: 'Woher kommt der Goldpreis?',
+                faq_a3: 'Goldpreise werden basierend auf internationalen Spotpreisen und dem USD/TRY-Kurs berechnet.',
+                faq_q4: 'Ist diese Seite kostenlos?',
+                faq_a4: 'Ja, alle unsere Tools sind völlig kostenlos.',
+                faq_q5: 'Funktioniert es auf dem Handy?',
+                faq_a5: 'Ja, unsere Seite ist auf allen mobilen Geräten voll responsive.',
+                faq_q6: 'Welche Währungen werden unterstützt?',
+                faq_a6: 'Wir unterstützen USD, EUR, GBP, CHF, SAR, AED, RUB und JPY.'
+            },
+            ru: {
+                converter_title: 'Конвертер валют',
+                amount: 'Сумма',
+                from: 'Из',
+                to: 'В',
+                chart_title: 'USD/TRY Тренд за 12 месяцев',
+                inflation_title: 'Калькулятор инфляции',
+                start_year: 'Год начала',
+                col_title: 'Сравнение стоимости жизни',
+                item: 'Товар',
+                price_try: 'Цена (TRY)',
+                price_usd: 'Цена (USD)',
+                gold_title: 'Цены на золото',
+                offices_title: 'Лучшие обменные пункты',
+                office_1: 'Гранд Базар Валюта',
+                office_2: 'Глобал FX',
+                office_3: 'Анатолия Золото',
+                office_desc: 'Лучшие курсы и быстрый сервис.',
+                visit: 'Посетить',
+                faq_title: 'Часто задаваемые вопросы',
+                footer_text: 'Все права защищены. Данные носят информационный характер.',
+                gram_gold: 'Грамм золота',
+                ceyrek_gold: 'Четверть золота',
+                yarim_gold: 'Пол-золота',
+                tam_gold: 'Целое золото',
+                inf_msg: '{amount} TRY из {year} года сегодня реально стоят всего {result} TRY.',
+                faq_q1: 'Как часто обновляются курсы?',
+                faq_a1: 'Курсы валют обновляются каждые 10 минут.',
+                faq_q2: 'Как рассчитывается ИПЦ?',
+                faq_a2: 'Данные ИПЦ рассчитываются с использованием годовых темпов инфляции из официальной статистики.',
+                faq_q3: 'Откуда берется цена на золото?',
+                faq_a3: 'Цены на золото рассчитываются на основе международных спотовых цен и курса USD/TRY.',
+                faq_q4: 'Этот сайт бесплатный?',
+                faq_a4: 'Да, все наши инструменты совершенно бесплатны.',
+                faq_q5: 'Работает ли он на мобильных устройствах?',
+                faq_a5: 'Да, наш сайт полностью адаптирован для всех мобильных устройств.',
+                faq_q6: 'Какие валюты поддерживаются?',
+                faq_a6: 'Мы поддерживаем USD, EUR, GBP, CHF, SAR, AED, RUB и JPY.'
+            },
+            ar: {
+                converter_title: 'محول العملات',
+                amount: 'المبلغ',
+                from: 'من',
+                to: 'إلى',
+                chart_title: 'اتجاه USD/TRY لمدة 12 شهرًا',
+                inflation_title: 'حاسبة التضخم',
+                start_year: 'سنة البدء',
+                col_title: 'مقارنة تكلفة المعيشة',
+                item: 'العنصر',
+                price_try: 'السعر (TRY)',
+                price_usd: 'السعر (USD)',
+                gold_title: 'أسعار الذهب',
+                offices_title: 'أفضل مكاتب الصرافة',
+                office_1: 'صرافة البازار الكبير',
+                office_2: 'جلوبال إف إكس',
+                office_3: 'ذهب الأناضول',
+                office_desc: 'أفضل الأسعار وخدمة سريعة.',
+                visit: 'زيارة',
+                faq_title: 'الأسئلة الشائعة',
+                footer_text: 'جميع الحقوق محفوظة. البيانات للأغراض الإعلامية فقط.',
+                gram_gold: 'جرام ذهب',
+                ceyrek_gold: 'ربع ليرة ذهب',
+                yarim_gold: 'نصف ليرة ذهب',
+                tam_gold: 'ليرة ذهب كاملة',
+                inf_msg: '{amount} ليرة من عام {year} تساوي {result} ليرة فقط اليوم بالقيمة الحقيقية.',
+                faq_q1: 'كم مرة يتم تحديث الأسعار؟',
+                faq_a1: 'يتم تحديث أسعار العملات كل 10 دقائق.',
+                faq_q2: 'كيف يتم حساب مؤشر أسعار المستهلك؟',
+                faq_a2: 'يتم حساب بيانات مؤشر أسعار المستهلك باستخدام معدلات التضخم السنوية من الإحصاءات الرسمية.',
+                faq_q3: 'من أين يأتي سعر الذهب؟',
+                faq_a3: 'يتم حساب أسعار الذهب بناءً على الأسعار العالمية وسعر صرف الدولار مقابل الليرة.',
+                faq_q4: 'هل هذا الموقع مجاني؟',
+                faq_a4: 'نعم، جميع أدواتنا مجانية تمامًا للاستخدام.',
+                faq_q5: 'هل يعمل على الهاتف المحمول؟',
+                faq_a5: 'نعم، موقعنا متوافق تمامًا مع جميع الأجهزة المحمولة.',
+                faq_q6: 'ما هي العملات المدعومة؟',
+                faq_a6: 'نحن ندعم USD و EUR و GBP و CHF و SAR و AED و RUB و JPY.'
+            }
+        };
+
+        const COL_ITEMS = [
+            { id: 'bread', tr: 'Ekmek', en: 'Bread', de: 'Brot', ru: 'Хлеб', ar: 'خبز', try: 10 },
+            { id: 'milk', tr: 'Süt (1L)', en: 'Milk (1L)', de: 'Milch (1L)', ru: 'Молоко (1л)', ar: 'حليب (1 لتر)', try: 35 },
+            { id: 'eggs', tr: 'Yumurta (15li)', en: 'Eggs (15pcs)', de: 'Eier (15 Stk)', ru: 'Яйца (15 шт)', ar: 'بيض (15 حبة)', try: 65 },
+            { id: 'meat', tr: 'Dana Eti (1kg)', en: 'Beef (1kg)', de: 'Rindfleisch (1kg)', ru: 'Говядина (1кг)', ar: 'لحم بقري (1 كجم)', try: 550 },
+            { id: 'chicken', tr: 'Tavuk (1kg)', en: 'Chicken (1kg)', de: 'Hähnchen (1kg)', ru: 'Курица (1кг)', ar: 'دجاج (1 كجم)', try: 180 },
+            { id: 'water', tr: 'Su (5L)', en: 'Water (5L)', de: 'Wasser (5L)', ru: 'Вода (5л)', ar: 'ماء (5 لتر)', try: 25 },
+            { id: 'coffee', tr: 'Kahve (Starbucks)', en: 'Coffee (Starbucks)', de: 'Kaffee (Starbucks)', ru: 'Кофе (Starbucks)', ar: 'قهوة (ستاربكس)', try: 120 },
+            { id: 'bus', tr: 'Otobüs Bileti', en: 'Bus Ticket', de: 'Busticket', ru: 'Билет на автобус', ar: 'تذكرة حافلة', try: 20 },
+            { id: 'cinema', tr: 'Sinema Bileti', en: 'Cinema Ticket', de: 'Kinoticket', ru: 'Билет в кино', ar: 'تذكرة سينما', try: 180 },
+            { id: 'rent', tr: 'Kira (1+1)', en: 'Rent (1+1)', de: 'Miete (1+1)', ru: 'Аренда (1+1)', ar: 'إيجار (1+1)', try: 15000 }
+        ];
+
+        // --- State ---
+        let currentLang = 'tr';
+        let rates = {};
+        let goldPriceGram = 0;
+
+        // --- Initialization ---
+        window.onload = () => {
+            const savedLang = localStorage.getItem('lang');
+            const browserLang = navigator.language.split('-')[0];
+            const initialLang = savedLang || (TRANSLATIONS[browserLang] ? browserLang : 'tr');
+            setLanguage(initialLang);
+            
+            fetchRates();
+            initChart();
+            renderFAQ();
+            
+            // Refresh every 10 mins
+            setInterval(fetchRates, 600000);
+        };
+
+        // --- Language System ---
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            document.documentElement.lang = lang;
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            // Update buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            // Update static text
+            document.querySelectorAll('[data-t]').forEach(el => {
+                const key = el.dataset.t;
+                if (TRANSLATIONS[lang][key]) {
+                    el.innerText = TRANSLATIONS[lang][key];
+                }
+            });
+
+            // Update dynamic parts
+            renderCOLTable();
+            renderFAQ();
+            calculateInflation();
+            if (rates.USD) calculateConversion();
+            if (goldPriceGram) updateGoldUI();
+        }
+
+        // --- API & Data Fetching ---
+        async function fetchRates() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                if (data.result === 'success') {
+                    rates = data.rates;
+                    const timestamp = new Date(data.time_last_update_unix * 1000).toLocaleString(currentLang);
+                    document.getElementById('last-updated').innerText = timestamp;
+                    
+                    // Calculate Gold (Approx based on $2350/oz)
+                    const usdTry = 1 / rates.USD;
+                    goldPriceGram = (2350 / 31.1035) * usdTry;
+                    
+                    calculateConversion();
+                    updateGoldUI();
+                    renderCOLTable();
+                }
+            } catch (error) {
+                console.error('Rate fetch failed:', error);
+                document.getElementById('last-updated').innerText = 'Error loading rates.';
+            }
+        }
+
+        // --- Currency Converter ---
+        function calculateConversion() {
+            const amount = parseFloat(document.getElementById('convert-amount').value) || 0;
+            const from = document.getElementById('from-currency').value;
+            const to = document.getElementById('to-currency').value;
+
+            if (!rates[from] || !rates[to]) return;
+
+            // Convert to base (TRY) then to target
+            const inTry = amount / rates[from];
+            const result = inTry * rates[to];
+
+            animateCounter('conversion-result', result);
+        }
+
+        function swapCurrencies() {
+            const from = document.getElementById('from-currency');
+            const to = document.getElementById('to-currency');
+            const temp = from.value;
+            from.value = to.value;
+            to.value = temp;
+            calculateConversion();
+        }
+
+        function setAmount(val) {
+            document.getElementById('convert-amount').value = val;
+            calculateConversion();
+        }
+
+        // --- Gold Tracker ---
+        function updateGoldUI() {
+            const container = document.getElementById('gold-container');
+            const t = TRANSLATIONS[currentLang];
+            
+            const items = [
+                { name: t.gram_gold, price: goldPriceGram },
+                { name: t.ceyrek_gold, price: goldPriceGram * 1.75 },
+                { name: t.yarim_gold, price: goldPriceGram * 3.5 },
+                { name: t.tam_gold, price: goldPriceGram * 7 }
+            ];
+
+            container.innerHTML = items.map(item => `
+                <div class="gold-item">
+                    <span class="gold-name">${item.name}</span>
+                    <span class="gold-price">${item.price.toLocaleString(currentLang, { style: 'currency', currency: 'TRY' })}</span>
+                </div>
+            `).join('');
+        }
+
+        // --- Inflation Calculator ---
+        function calculateInflation() {
+            const amount = parseFloat(document.getElementById('inf-amount').value) || 0;
+            const startYear = parseInt(document.getElementById('inf-year').value);
+            const currentYear = 2024;
+            
+            let multiplier = 1;
+            for (let y = startYear; y <= currentYear; y++) {
+                multiplier *= (1 + TUFE_DATA[y] / 100);
+            }
+
+            // Real value today: If you had 1000 TL then, it's equivalent to 1000 * multiplier today.
+            // But the prompt says "your 1000 TL from 2018 is worth only X TL today in real terms"
+            // This usually means: 1000 TL today buys what 1000 / multiplier TL bought then.
+            const result = amount / multiplier;
+            
+            const msg = TRANSLATIONS[currentLang].inf_msg
+                .replace('{amount}', amount.toLocaleString())
+                .replace('{year}', startYear)
+                .replace('{result}', result.toLocaleString(currentLang, { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+
+            document.getElementById('inflation-text').innerHTML = `<p class="inflation-highlight">${msg}</p>`;
+
+            // Erosion Chart
+            const barsContainer = document.getElementById('erosion-bars');
+            let erosionHtml = '';
+            let currentMultiplier = 1;
+            
+            // Show 5 steps from start year to now
+            const step = Math.ceil((currentYear - startYear) / 5) || 1;
+            for (let y = startYear; y <= currentYear; y += step) {
+                // Calculate cumulative inflation up to year y
+                let m = 1;
+                for (let i = startYear; i <= y; i++) m *= (1 + TUFE_DATA[i] / 100);
+                
+                const power = (1 / m) * 100;
+                erosionHtml += `
+                    <div class="erosion-bar-container">
+                        <span class="erosion-label">${y}</span>
+                        <div class="erosion-bar-bg">
+                            <div class="erosion-bar-fill" style="width: ${power}%"></div>
+                        </div>
+                        <span style="font-size: 10px; width: 30px;">%${Math.round(power)}</span>
+                    </div>
+                `;
+            }
+            barsContainer.innerHTML = erosionHtml;
+        }
+
+        // --- Cost of Living Table ---
+        function renderCOLTable() {
+            const tbody = document.getElementById('col-table-body');
+            const usdTry = rates.USD ? (1 / rates.USD) : 32;
+            
+            tbody.innerHTML = COL_ITEMS.map(item => `
+                <tr>
+                    <td>${item[currentLang]}</td>
+                    <td>${item.try.toLocaleString(currentLang)} TL</td>
+                    <td>$${(item.try / usdTry).toFixed(2)}</td>
+                </tr>
+            `).join('');
+        }
+
+        // --- FAQ Section ---
+        function renderFAQ() {
+            const container = document.getElementById('faq-container');
+            const t = TRANSLATIONS[currentLang];
+            const faqs = [
+                { q: t.faq_q1, a: t.faq_a1 },
+                { q: t.faq_q2, a: t.faq_a2 },
+                { q: t.faq_q3, a: t.faq_a3 },
+                { q: t.faq_q4, a: t.faq_a4 },
+                { q: t.faq_q5, a: t.faq_a5 },
+                { q: t.faq_q6, a: t.faq_a6 }
+            ];
+
+            container.innerHTML = faqs.map((faq, i) => `
+                <div class="faq-item" onclick="toggleFAQ(${i})">
+                    <div class="faq-question">
+                        ${faq.q}
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        ${faq.a}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleFAQ(index) {
+            const items = document.querySelectorAll('.faq-item');
+            items[index].classList.toggle('active');
+        }
+
+        // --- Chart.js ---
+        function initChart() {
+            const ctx = document.getElementById('historyChart').getContext('2d');
+            
+            // Mocking historical data for USD/TRY trend (last 12 months)
+            const labels = ['Nis 23', 'May 23', 'Haz 23', 'Tem 23', 'Ağu 23', 'Eyl 23', 'Eki 23', 'Kas 23', 'Ara 23', 'Oca 24', 'Şub 24', 'Mar 24'];
+            const data = [19.4, 20.1, 23.5, 26.8, 27.2, 27.5, 28.2, 28.9, 29.5, 30.2, 31.1, 32.4];
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'USD/TRY',
+                        data: data,
+                        borderColor: '#e84042',
+                        backgroundColor: 'rgba(232, 64, 66, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0,
+                        pointHoverRadius: 6,
+                        pointHoverBackgroundColor: '#e84042',
+                        pointHoverBorderColor: '#fff',
+                        pointHoverBorderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: '#161b3d',
+                            titleColor: '#fff',
+                            bodyColor: '#a0aec0',
+                            borderColor: 'rgba(255,255,255,0.1)',
+                            borderWidth: 1,
+                            padding: 10,
+                            displayColors: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#a0aec0', font: { size: 10 } }
+                        },
+                        y: {
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#a0aec0', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // --- Helpers ---
+        function animateCounter(id, target) {
+            const el = document.getElementById(id);
+            const start = parseFloat(el.innerText.replace(/[^0-9.-]+/g,"")) || 0;
+            const duration = 500;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const current = start + (target - start) * progress;
+                
+                el.innerText = current.toLocaleString(currentLang, { 
+                    minimumFractionDigits: 2, 
+                    maximumFractionDigits: 2 
+                });
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            requestAnimationFrame(update);
+        }
+    </script>
+</body>
+</html>
