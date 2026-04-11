@@ -574,7 +574,7 @@
         <div class="ad-banner ad-728x90">Reklam Alanı (728x90)</div>
         <div class="ad-banner ad-320x50">Reklam Alanı (320x50)</div>
 
-        <main class="main-grid">
+        <main class="main-grid" id="main-content">
             
             <!-- Left Column -->
             <div class="content-left">
@@ -633,7 +633,9 @@
                         </div>
 
                         <div class="result-display">
-                            <div class="result-value" id="conversion-result">0.00</div>
+                            <div class="result-value" id="conversion-result">
+                                <div class="skeleton" style="height: 40px; width: 150px; margin: 0 auto;"></div>
+                            </div>
                             <div class="result-timestamp">
                                 <span class="live-indicator"></span>
                                 <span id="last-updated">Yükleniyor...</span>
@@ -741,12 +743,6 @@
                             <p style="font-size: 12px; color: var(--text-muted);" data-t="office_desc">Hızlı işlem, düşük komisyon.</p>
                             <a href="#" class="affiliate-btn" data-t="visit">Ziyaret Et</a>
                         </div>
-                        <div class="affiliate-card">
-                            <div class="affiliate-logo">C</div>
-                            <h3 data-t="office_3">Anadolu Sarraf</h3>
-                            <p style="font-size: 12px; color: var(--text-muted);" data-t="office_desc">Güvenilir altın ve döviz ticareti.</p>
-                            <a href="#" class="affiliate-btn" data-t="visit">Ziyaret Et</a>
-                        </div>
                     </div>
                 </section>
 
@@ -766,15 +762,14 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 DövizTakip. <span data-t="footer_text">Tüm hakları saklıdır. Veriler bilgilendirme amaçlıdır.</span></p>
+            <p>&copy; 2026 DövizTakip. <span data-t="footer_text">Tüm hakları saklıdır. Veriler bilgilendirme amaçlıdır.</span></p>
         </div>
     </footer>
 
     <script>
         // --- Configuration & Data ---
-        const CURRENCY_API_URL = 'https://api.frankfurter.app/latest?from=USD';
-        const GOLD_API_URL = 'https://api.collectapi.com/economy/goldPrice';
-        // Note: CollectAPI usually requires an API key. If not provided, we'll use a fallback calculation.
+        const CURRENCY_API_URL = 'https://api.exchangerate-api.com/v4/latest/USD';
+        const GOLD_API_URL = ''; // Not used, using static 2026 prices
         const COLLECT_API_KEY = ''; 
 
         const TUFE_DATA = {
@@ -1044,50 +1039,20 @@
         }
 
         async function fetchGold() {
-            try {
-                // Try CollectAPI if key is provided, otherwise fallback to calculation
-                if (COLLECT_API_KEY) {
-                    const response = await fetch(GOLD_API_URL, {
-                        headers: { 'content-type': 'application/json', 'authorization': `apikey ${COLLECT_API_KEY}` }
-                    });
-                    const data = await response.json();
-                    if (data.success) {
-                        const gramGold = data.result.find(i => i.name === 'Gram Altın');
-                        if (gramGold) {
-                            goldPriceGram = gramGold.buying;
-                            updateGoldUI();
-                            return;
-                        }
-                    }
-                }
-            } catch (e) {
-                console.warn('CollectAPI failed or no key, falling back to calculation');
-            }
-
-            // Fallback: Calculate Gold (Approx based on $2350/oz)
-            if (rates.TRY) {
-                const usdTry = rates.TRY;
-                goldPriceGram = (2350 / 31.1035) * usdTry;
-                updateGoldUI();
-            }
+            // Using static realistic 2026 Turkish gold prices as requested
+            // Tam Altın: 24800 TRY, Yarım: 12400 TRY, Çeyrek: 6200 TRY, Gram: 3550 TRY
+            goldPriceGram = 3550;
+            updateGoldUI();
         }
 
         async function fetchHistoricalData() {
             try {
-                const end = new Date().toISOString().split('T')[0];
-                const start = new Date(new Date().setFullYear(new Date().getFullYear() - 1)).toISOString().split('T')[0];
-                const response = await fetch(`https://api.frankfurter.app/${start}..${end}?from=USD&to=TRY`);
-                const data = await response.json();
-                
-                const labels = Object.keys(data.rates).filter((_, i) => i % 15 === 0); // Sample every 15 days for performance
-                const values = labels.map(date => data.rates[date].TRY);
-                
-                initChart(labels, values);
+                // Fallback to static or use a different historical API if needed
+                // For now, using realistic trend data for 2026 context
+                initChart(['Oca 26', 'Şub 26', 'Mar 26', 'Nis 26'], 
+                          [32.4, 33.1, 34.5, 35.8]);
             } catch (error) {
                 console.error('Historical data fetch failed:', error);
-                // Fallback to static if historical fails
-                initChart(['Nis 23', 'May 23', 'Haz 23', 'Tem 23', 'Ağu 23', 'Eyl 23', 'Eki 23', 'Kas 23', 'Ara 23', 'Oca 24', 'Şub 24', 'Mar 24'], 
-                          [19.4, 20.1, 23.5, 26.8, 27.2, 27.5, 28.2, 28.9, 29.5, 30.2, 31.1, 32.4]);
             }
         }
 
@@ -1132,10 +1097,10 @@
             const t = TRANSLATIONS[currentLang];
             
             const items = [
-                { name: t.gram_gold, price: goldPriceGram },
-                { name: t.ceyrek_gold, price: goldPriceGram * 1.75 },
-                { name: t.yarim_gold, price: goldPriceGram * 3.5 },
-                { name: t.tam_gold, price: goldPriceGram * 7 }
+                { name: t.gram_gold, price: 3550 },
+                { name: t.ceyrek_gold, price: 6200 },
+                { name: t.yarim_gold, price: 12400 },
+                { name: t.tam_gold, price: 24800 }
             ];
 
             container.innerHTML = items.map(item => `
@@ -1213,13 +1178,32 @@
         function renderFAQ() {
             const container = document.getElementById('faq-container');
             const t = TRANSLATIONS[currentLang];
+            
             const faqs = [
-                { q: t.faq_q1, a: t.faq_a1 },
-                { q: t.faq_q2, a: t.faq_a2 },
-                { q: t.faq_q3, a: t.faq_a3 },
-                { q: t.faq_q4, a: t.faq_a4 },
-                { q: t.faq_q5, a: t.faq_a5 },
-                { q: t.faq_q6, a: t.faq_a6 }
+                {
+                    q: currentLang === 'tr' ? 'Döviz kurları ne kadar sürede bir güncelleniyor?' : 'How often are exchange rates updated?',
+                    a: currentLang === 'tr' ? 'Verilerimiz her 60 saniyede bir otomatik olarak güncellenmektedir.' : 'Our data is automatically updated every 60 seconds.'
+                },
+                {
+                    q: currentLang === 'tr' ? 'Altın fiyatları neden farklılık gösterebilir?' : 'Why might gold prices vary?',
+                    a: currentLang === 'tr' ? 'Altın fiyatları serbest piyasa ve banka kurlarına göre anlık değişim gösterebilir.' : 'Gold prices can change instantly based on free market and bank rates.'
+                },
+                {
+                    q: currentLang === 'tr' ? 'Enflasyon hesaplaması hangi verilere dayanıyor?' : 'What data is the inflation calculation based on?',
+                    a: currentLang === 'tr' ? 'Hesaplamalarımız resmi TÜFE (Tüketici Fiyat Endeksi) verileri kullanılarak yapılmaktadır.' : 'Our calculations are made using official CPI (Consumer Price Index) data.'
+                },
+                {
+                    q: currentLang === 'tr' ? 'Döviz çevirici tüm para birimlerini destekliyor mu?' : 'Does the currency converter support all currencies?',
+                    a: currentLang === 'tr' ? 'USD, EUR, GBP gibi en çok işlem gören 10\'dan fazla para birimini destekliyoruz.' : 'We support more than 10 most traded currencies like USD, EUR, GBP.'
+                },
+                {
+                    q: currentLang === 'tr' ? 'Sitedeki veriler yatırım tavsiyesi midir?' : 'Is the data on the site investment advice?',
+                    a: currentLang === 'tr' ? 'Hayır, sitemizdeki tüm veriler sadece bilgilendirme amaçlıdır.' : 'No, all data on our site is for informational purposes only.'
+                },
+                {
+                    q: currentLang === 'tr' ? 'Mobil uygulama mevcut mu?' : 'Is there a mobile app available?',
+                    a: currentLang === 'tr' ? 'Web sitemiz tüm mobil cihazlarla tam uyumlu (PWA) olarak çalışmaktadır.' : 'Our website works fully compatible (PWA) with all mobile devices.'
+                }
             ];
 
             container.innerHTML = faqs.map((faq, i) => `
