@@ -408,50 +408,6 @@
             text-transform: uppercase;
         }
 
-        /* Affiliate Cards */
-        .affiliate-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .affiliate-card {
-            background: #1a204d;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid var(--border);
-            transition: transform 0.3s;
-        }
-
-        .affiliate-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .affiliate-logo {
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 24px;
-        }
-
-        .affiliate-btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 8px 20px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 700;
-        }
-
         /* FAQ */
         .faq-section {
             margin-top: 40px;
@@ -700,25 +656,6 @@
                     </div>
                 </section>
 
-                <!-- Best Exchange Offices -->
-                <section class="card">
-                    <h2 class="card-title">🏦 <span data-t="offices_title">En İyi Döviz Büroları</span></h2>
-                    <div class="affiliate-grid">
-                        <div class="affiliate-card">
-                            <div class="affiliate-logo">A</div>
-                            <h3 data-t="office_1">Kapalıçarşı Döviz</h3>
-                            <p style="font-size: 12px; color: var(--text-muted);" data-t="office_desc">En iyi kurlar ve hızlı işlem.</p>
-                            <a href="#" class="affiliate-btn" data-t="visit">Ziyaret Et</a>
-                        </div>
-                        <div class="affiliate-card">
-                            <div class="affiliate-logo">B</div>
-                            <h3 data-t="office_2">Global FX</h3>
-                            <p style="font-size: 12px; color: var(--text-muted);" data-t="office_desc">Hızlı işlem, düşük komisyon.</p>
-                            <a href="#" class="affiliate-btn" data-t="visit">Ziyaret Et</a>
-                        </div>
-                    </div>
-                </section>
-
             </div>
 
         </main>
@@ -750,7 +687,7 @@
         };
 
         const BASE_GOLD = {
-            gram: 3550,
+            gram: 3100,
             ceyrek: 6200,
             yarim: 12400,
             tam: 24800
@@ -773,9 +710,9 @@
                 inflation_title: 'Enflasyon Hesaplayıcı (TÜFE)',
                 start_year: 'Başlangıç Yılı',
                 col_title: 'Yaşam Maliyeti Karşılaştırması',
-                item: 'Ürün',
-                price_try: 'Fiyat (TRY)',
-                price_usd: 'Fiyat (USD)',
+                item: 'ÜRÜN',
+                price_try: 'FİYAT (TRY)',
+                price_usd: 'FİYAT (USD)',
                 gold_title: 'Altın Fiyatları',
                 offices_title: 'En İyi Döviz Büroları',
                 office_1: 'Kapalıçarşı Döviz',
