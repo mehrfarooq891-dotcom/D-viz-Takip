@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkımızda | DövizTakip - Ücretsiz Döviz ve Enflasyon Aracı</title>
+    <meta name="description" content="DövizTakip, Türkiye için ücretsiz bir çevrimiçi kur takip ve enflasyon hesaplama aracıdır. Kayıt olmadan anında kullanın.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --navy: #0f172a;
+            --navy-light: #1e293b;
+            --gold: #f59e0b;
+            --white: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--navy);
+            color: var(--white);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--gold);
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--navy-light);
+                padding: 24px;
+                border-bottom: 1px solid var(--border);
+                gap: 16px;
+                text-align: center;
+            }
+            .nav-links.active { display: flex; }
+        }
+
+        /* About Styles */
+        .about-section {
+            padding: 80px 0;
+        }
+
+        .about-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .about-hero h1 {
+            font-family: var(--font-mono);
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--gold);
+        }
+
+        .about-hero p {
+            font-size: 20px;
+            color: var(--text-muted);
+        }
+
+        .content-block {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        .content-block h2 {
+            font-family: var(--font-mono);
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .value-card {
+            background: var(--navy-light);
+            border: 1px solid var(--border);
+            padding: 40px 30px;
+            border-radius: 24px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .value-card h3 {
+            font-family: var(--font-mono);
+            color: var(--gold);
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        .seo-footer {
+            margin-top: 80px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .accent { color: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="nav-logo">DövizTakip</a>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container about-section">
+        <header class="about-hero">
+            <h1>About DövizTakip</h1>
+            <p>Free. Instant. No signup required.</p>
+        </header>
+
+        <section class="content-block">
+            <h2>What We Do</h2>
+            <p>DövizTakip is a dedicated financial tool designed to provide real-time currency exchange rates and advanced inflation calculation for users in Turkey. We help investors, travelers, and citizens track the purchasing power of the Turkish Lira across different economic cycles. Our platform is completely free to use and provides transparent, instant data without any barriers.</p>
+        </section>
+
+        <section class="content-block">
+            <h2>Why We Built This</h2>
+            <p>Most financial tools are locked behind paywalls or require creating an account just to see a number. We believe useful tools should be free and instant for everyone. In a fast-moving economy like Turkey's, having access to clear currency trends and inflation metrics is a necessity, not a luxury.</p>
+        </section>
+
+        <div class="value-grid">
+            <div class="value-card">
+                <h3>100% Free</h3>
+                <p>No hidden fees, no subscriptions, ever. Our platform is supported by community use and remains accessible to all.</p>
+            </div>
+            <div class="value-card">
+                <h3>No Signup</h3>
+                <p>No account needed. We don't ask for your email or personal details. Your data stays private and your experience stays fast.</p>
+            </div>
+            <div class="value-card">
+                <h3>Built Local</h3>
+                <p>Designed for real conditions, local currency (TRY), and local economic metrics of Turkey. We understand the specific needs of our users.</p>
+            </div>
+        </div>
+
+        <div class="seo-footer">
+            <p>DövizTakip is a free online currency tracker and inflation calculator for Turkey. Use it anytime with no registration required.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 DövizTakip</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('hamburger').onclick = () => {
+            document.getElementById('nav-links').classList.toggle('active');
+        };
+    </script>
+</body>
+</html>

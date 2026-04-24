@@ -453,6 +453,48 @@
             gap: 24px;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--navy-light);
+                padding: 24px;
+                border-bottom: 1px solid var(--border);
+                gap: 16px;
+                text-align: center;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
         .nav-link {
             color: var(--white);
             text-decoration: none;
@@ -547,10 +589,18 @@
 
     <nav class="navbar">
         <div class="container nav-content">
-            <a href="#" class="nav-logo" onclick="showPage('home')">DövizTakip</a>
-            <div class="nav-links">
-                <a class="nav-link active" id="nav-home" onclick="showPage('home')" data-t="nav_home">Anasayfa</a>
-                <a class="nav-link" id="nav-about" onclick="showPage('about')" data-t="nav_about">Hakkımızda</a>
+            <a href="index.html" class="nav-logo">DövizTakip</a>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" class="nav-link active" data-t="nav_home">Home</a>
+                <a href="about.html" class="nav-link" data-t="nav_about">About</a>
+                <a href="contact.html" class="nav-link" data-t="nav_contact">Contact</a>
             </div>
         </div>
     </nav>
@@ -706,7 +756,7 @@
     <section class="expert-section">
         <div class="container">
             <div class="expert-card">
-                <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Emre Demir" class="expert-img">
+                <img src="https://i.postimg.cc/sfm096Fq/emre-demir.png" alt="Emre Demir" class="expert-img">
                 <div class="expert-name">Emre Demir</div>
                 <div class="expert-title">Finansal Analist</div>
                 <p class="expert-bio" data-t="expert_bio"></p>
@@ -731,55 +781,6 @@
     </footer>
 
     </div> <!-- End Home Page -->
-
-    <div id="about-page" class="hidden">
-        <section class="about-header container">
-            <h1 style="font-size: 48px; font-family: var(--font-mono); margin-bottom: 40px;" data-t="about_title">Hakkımızda</h1>
-            
-            <div class="expert-card" style="margin-bottom: 60px;">
-                <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Emre Demir" class="expert-img">
-                <div class="expert-name">Emre Demir</div>
-                <div class="expert-title">Finansal Analist</div>
-                <p class="expert-bio" data-t="expert_bio"></p>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-value" data-t="stat_1_v">16 Yıl</span>
-                    <span class="stat-label" data-t="stat_1_l">Deneyim</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value" data-t="stat_2_v">CANLI</span>
-                    <span class="stat-label" data-t="stat_2_l">Kur Takibi</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value" data-t="stat_3_v">6 DİL</span>
-                    <span class="stat-label" data-t="stat_3_l">Desteği</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value" data-t="stat_4_v">ÜCRETSİZ</span>
-                    <span class="stat-label" data-t="stat_4_l">Platform</span>
-                </div>
-            </div>
-
-            <div class="mission-box">
-                <div class="mission-title" data-t="mission_label">Misyonumuz</div>
-                <div class="mission-text" data-t="mission_text">Finansal bilgiyi herkes için erişilebilir kılmak</div>
-            </div>
-
-            <div style="max-width: 600px; margin: 60px auto; text-align: center; color: var(--text-muted); font-size: 14px;">
-                <p style="margin-bottom: 12px;" data-t="trust_1">Veriler bilgilendirme amaçlıdır.</p>
-                <p data-t="trust_2">Yatırım tavsiyesi değildir.</p>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <p class="disclaimer">Veriler bilgilendirme amaçlıdır. Yatırım tavsiyesi değildir.</p>
-                <p class="copy">© 2026 DövizTakip</p>
-            </div>
-        </footer>
-    </div>
 
     <script>
         // --- Configuration ---
@@ -844,6 +845,7 @@
                 expert_bio: 'Emre Demir, 16 yıldır Türk finans piyasalarında aktif olarak çalışmaktadır. Borsa İstanbul ve uluslararası döviz piyasalarında deneyim kazanan Demir, DövizTakip\'i vatandaşların günlük ekonomik kararlarını daha bilinçli vermelerine yardımcı olmak için kurmuştur.',
                 nav_home: 'Anasayfa',
                 nav_about: 'Hakkımızda',
+                nav_contact: 'İletişim',
                 about_title: 'Hakkımızda',
                 stat_1_v: '16 YIL',
                 stat_1_l: 'Finans Deneyimi',
@@ -894,6 +896,7 @@
                 expert_bio: 'Emre Demir has been active in Turkish financial markets for 16 years. Having gained experience in Borsa Istanbul and international currency markets, Demir founded DövizTakip to help citizens make more informed daily economic decisions.',
                 nav_home: 'Home',
                 nav_about: 'About',
+                nav_contact: 'Contact',
                 about_title: 'About Us',
                 stat_1_v: '16 YEARS',
                 stat_1_l: 'Finance Experience',
@@ -931,6 +934,11 @@
             
             const savedLang = localStorage.getItem('lang');
             setLanguage(savedLang || 'tr');
+
+            // Hamburger toggle
+            document.getElementById('hamburger').onclick = () => {
+                document.getElementById('nav-links').classList.toggle('active');
+            };
             
             // Populate Start Year Select
             const yearSelect = document.getElementById('inf-year');
