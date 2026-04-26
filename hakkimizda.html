@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkımızda | DövizTakip</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Rajdhani:wght@500;700&subset=latin,latin-ext&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --bg: #0a1628;
+            --bg2: #0f1f3d;
+            --card: #112244;
+            --orange: #f97316;
+            --orange2: #fb923c;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --green: #10b981;
+            --red: #ef4444;
+            --border: rgba(249, 115, 22, 0.2);
+            --font-sans: 'Rajdhani', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--orange);
+            border: 1px solid var(--orange);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-mono);
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--orange);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .lang-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .lang-btn {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            border-color: var(--orange);
+            color: var(--orange);
+            background: rgba(249, 115, 22, 0.05);
+        }
+
+        /* Ticker Bar */
+        .ticker-bar {
+            background: var(--bg2);
+            border-y: 1px solid var(--border);
+            padding: 12px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .ticker-wrap {
+            display: flex;
+            animation: ticker 40s linear infinite;
+            width: max-content;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 40px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+        }
+
+        .ticker-item span {
+            color: var(--orange);
+            font-weight: 700;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Tool Cards */
+        .card {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 32px;
+            border: 1px solid var(--border);
+            height: 100%;
+        }
+
+        /* Expert Section */
+        .expert-section {
+            background: rgba(249, 115, 22, 0.03);
+            border-radius: 32px;
+            padding: 80px 20px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .expert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .expert-card {
+            padding: 20px;
+        }
+
+        .expert-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--orange);
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        .expert-name {
+            font-family: var(--font-mono);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .expert-title {
+            color: var(--orange);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .expert-bio {
+            font-size: 16px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 80px 0;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .faq-item {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .faq-q {
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-family: var(--font-mono);
+            color: var(--orange);
+        }
+
+        .faq-a {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .disclaimer {
+            font-size: 12px;
+            color: var(--muted);
+            max-width: 400px;
+            margin: 0 auto 20px;
+        }
+
+        .copy {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--orange);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--orange);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--card);
+                padding: 24px;
+                border-bottom: 1px solid var(--border);
+                gap: 16px;
+                text-align: center;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--orange);
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--orange);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* About Page Styles */
+        .about-header {
+            text-align: center;
+            padding: 80px 0 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .mission-box {
+            background: rgba(249, 115, 22, 0.05);
+            border: 1px dashed var(--orange);
+            padding: 32px;
+            border-radius: 24px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .mission-title {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--orange);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .mission-text {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .hidden { display: none !important; }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="nav-logo">DövizTakip</a>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links" id="nav-links">
+                <a href="/" id="nav-home" class="nav-link" data-t="nav_home">Anasayfa</a>
+                <a href="/hakkimizda" id="nav-about" class="nav-link" data-t="nav_about">Hakkımızda</a>
+                <a href="/iletisim" id="nav-contact" class="nav-link" data-t="nav_contact">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <div id="about" class="page-section" style="padding-top: 80px;">
+        <header class="about-header container">
+            <h1 data-t="about_title">Hakkımızda</h1>
+            <p data-t="about_sub">Türkiye'nin en kapsamlı döviz takip platformunun arkasındaki hikaye.</p>
+        </header>
+
+        <section class="container">
+            <div class="mission-box">
+                <div class="mission-title" data-t="mission_label">Misyonumuz</div>
+                <div class="mission-text" data-t="mission_text">Finansal bilgiyi herkes için erişilebilir kılmak</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-value" data-t="stat_1_v">16 YIL</span>
+                    <span class="stat-label" data-t="stat_1_l">Finans Deneyimi</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" data-t="stat_2_v">CANLI</span>
+                    <span class="stat-label" data-t="stat_2_l">Gerçek Zamanlı Kur Takibi</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" data-t="stat_3_v">6 DİL</span>
+                    <span class="stat-label" data-t="stat_3_l">Desteği</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" data-t="stat_4_v">ÜCRETSİZ</span>
+                    <span class="stat-label" data-t="stat_4_l">Ücretsiz Platform</span>
+                </div>
+            </div>
+            
+            <div class="expert-section" style="margin-top: 40px; margin-bottom: 80px;">
+                <div class="expert-grid">
+                    <div class="expert-card">
+                         <img src="https://i.postimg.cc/sfm096Fq/emre-demir.png" alt="Emre Demir" class="expert-img">
+                        <div class="expert-name">Emre Demir</div>
+                        <div class="expert-title" data-t="expert_title">Finansal Analist</div>
+                        <p class="expert-bio" data-t="expert_bio"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div> <!-- End About Section -->
+
+    <!-- Common FAQ Section -->
+    <section class="faq container">
+        <h2 style="font-family: var(--font-mono); font-size: 32px; font-weight: 700; color: var(--orange); display: flex; align-items: center; justify-content: center; margin-bottom: 40px; gap: 12px;"><span data-t="faq_title">Sıkça Sorulan Sorular</span></h2>
+        <div class="faq-grid" id="faq-container">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+
+    <!-- Global Footer -->
+    <footer>
+        <div class="container">
+            <p class="disclaimer">Veriler bilgilendirme amaçlıdır. Yatırım tavsiyesi değildir.</p>
+            <p class="copy">© 2026 DövizTakip</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Configuration ---
+        const BASE_RATES = {
+            USD: 38.45, EUR: 41.20, GBP: 48.30, TRY: 1.0, CHF: 42.10, SAR: 10.25, AED: 10.47
+        };
+        const BASE_GOLD = {
+            gram: 3109.85, ceyrek: 6190.67, yarim: 12346.42, tam: 24713.81
+        };
+        const TUFE_DATA = {
+            2010: 8.57, 2011: 10.45, 2012: 6.16, 2013: 7.40, 2014: 8.17,
+            2015: 8.81, 2016: 8.53, 2017: 11.92, 2018: 20.30, 2019: 11.84,
+            2020: 14.60, 2021: 19.60, 2022: 72.31, 2023: 64.77, 2024: 65.00,
+            2025: 45.00
+        };
+
+        const TRANSLATIONS = {
+            tr: {
+                faq_title: 'Sıkça Sorulan Sorular',
+                faq_q1: 'Kurlar ne sıklıkla güncellenir?',
+                faq_a1: 'Döviz kurları piyasa hareketlerine göre anlık olarak güncellenmektedir.',
+                faq_q2: 'TÜFE nasıl hesaplanır?',
+                faq_a2: 'TÜFE verileri resmi kurumların yıllık enflasyon oranları baz alınarak kümülatif olarak hesaplanır.',
+                faq_q3: 'Altın fiyatı nereden geliyor?',
+                faq_a3: 'Altın fiyatları küresel ons fiyatı ve USD/TRY kuruna göre hesaplanmaktadır.',
+                faq_q4: 'Bu site ücretsiz mi?',
+                faq_a4: 'Evet, tüm araçlarımız ve verilerimiz tamamen ücretsizdir.',
+                faq_q5: 'Mobil cihazlarda çalışıyor mu?',
+                faq_a5: 'Evet, sitemiz tüm mobil cihazlarla tam uyumlu çalışmaktadır.',
+                faq_q6: 'Hangi para birimleri destekleniyor?',
+                faq_a6: 'USD, EUR, GBP, CHF, SAR, AED gibi popüler tüm birimleri destekliyoruz.',
+                expert_bio: 'Emre Demir, 16 yıldır Türk finans piyasalarında aktif olarak çalışmaktadır. Borsa İstanbul ve uluslararası döviz piyasalarında deneyim kazanan Demir, DövizTakip\'i vatandaşların günlük ekonomik kararlarını daha bilinçli vermelerine yardımcı olmak için kurmuştur.',
+                expert_title: 'Finansal Analist',
+                nav_home: 'Anasayfa', nav_about: 'Hakkımızda', nav_contact: 'İletişim',
+                about_title: 'Hakkımızda', about_sub: 'Türkiye\'nin en kapsamlı döviz takip platformunun arkasındaki hikaye.',
+                stat_1_v: '16 YIL', stat_1_l: 'Finans Deneyimi',
+                stat_2_v: 'CANLI', stat_2_l: 'Gerçek Zamanlı Kur Takibi',
+                stat_3_v: '6 DİL', stat_3_l: 'Desteği',
+                stat_4_v: 'ÜCRETSİZ', stat_4_l: 'Ücretsiz Platform',
+                mission_label: 'Misyonumuz', mission_text: 'Finansal bilgiyi herkes için erişilebilir kılmak'
+            },
+            en: {
+                faq_title: 'Frequently Asked Questions',
+                faq_q1: 'How often are rates updated?',
+                faq_a1: 'Rates are updated in real-time based on market movements.',
+                faq_q2: 'How is CPI calculated?',
+                faq_a2: 'CPI is calculated cumulatively based on official annual inflation data.',
+                faq_q3: 'Where does gold price come from?',
+                faq_a3: 'Gold prices are calculated based on global spot prices and USD/TRY rate.',
+                faq_q4: 'Is this site free?',
+                faq_a4: 'Yes, all tools and data are completely free to use.',
+                faq_q5: 'Does it work on mobile?',
+                faq_a5: 'Yes, our site is fully responsive on all devices.',
+                faq_q6: 'Which currencies are supported?',
+                faq_a6: 'Major currencies like USD, EUR, GBP, CHF, SAR, AED are supported.',
+                expert_bio: 'Emre Demir has been active in Turkish financial markets for 16 years. Having gained experience in Borsa Istanbul and international currency markets, Demir founded DövizTakip to help citizens make more informed daily economic decisions.',
+                expert_title: 'Financial Analyst',
+                nav_home: 'Home', nav_about: 'About', nav_contact: 'Contact',
+                about_title: 'About Us', about_sub: 'The story behind Turkey\'s most comprehensive exchange rate platform.',
+                stat_1_v: '16 YEARS', stat_1_l: 'Finance Experience',
+                stat_2_v: 'REAL-TIME', stat_2_l: 'Rate Tracking',
+                stat_3_v: '6 LANGUAGES', stat_3_l: 'Support',
+                stat_4_v: 'FREE', stat_4_l: 'Platform',
+                mission_label: 'Our Mission', mission_text: 'Making financial information accessible to everyone'
+            }
+        };
+
+        // --- State ---
+        let currentLang = 'tr';
+        let rates = { ...BASE_RATES };
+        let goldPrices = { ...BASE_GOLD };
+
+        // --- Init ---
+        window.onload = () => {
+            const path = window.location.pathname;
+            if (path === '/hakkimizda') document.getElementById('nav-about')?.classList.add('active');
+
+            const savedLang = localStorage.getItem('lang');
+            setLanguage(savedLang || 'tr');
+
+            const hamburger = document.getElementById('hamburger');
+            if (hamburger) {
+                hamburger.onclick = () => {
+                    document.getElementById('nav-links').classList.toggle('active');
+                };
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            document.documentElement.lang = lang;
+            
+            const t = TRANSLATIONS[lang] || TRANSLATIONS.tr;
+            document.querySelectorAll('[data-t]').forEach(el => {
+                const key = el.getAttribute('data-t');
+                if (t[key]) el.innerHTML = t[key];
+            });
+
+            renderFAQ();
+        }
+
+        function renderFAQ() {
+            const container = document.getElementById('faq-container');
+            if (!container) return;
+            const t = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
+
+            const faqs = [
+                { q: t.faq_q1, a: t.faq_a1 },
+                { q: t.faq_q2, a: t.faq_a2 },
+                { q: t.faq_q3, a: t.faq_a3 },
+                { q: t.faq_q4, a: t.faq_a4 },
+                { q: t.faq_q5, a: t.faq_a5 },
+                { q: t.faq_q6, a: t.faq_a6 }
+            ];
+
+            container.innerHTML = faqs.map(i => `
+                <div class="faq-item">
+                    <div class="faq-q">${i.q}</div>
+                    <div class="faq-a">${i.a}</div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>

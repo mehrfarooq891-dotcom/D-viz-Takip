@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim | DövizTakip</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Rajdhani:wght@500;700&subset=latin,latin-ext&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #0a1628;
+            --bg2: #0f1f3d;
+            --card: #112244;
+            --orange: #f97316;
+            --orange2: #fb923c;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --green: #10b981;
+            --red: #ef4444;
+            --border: rgba(249, 115, 22, 0.2);
+            --font-sans: 'Rajdhani', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--orange);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: var(--card);
+                padding: 24px;
+                border-bottom: 1px solid var(--border);
+                gap: 16px;
+                text-align: center;
+            }
+            .nav-links.active { display: flex; }
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--orange); }
+        .nav-logo { font-family: var(--font-mono); font-weight: 700; color: var(--orange); text-decoration: none; font-size: 18px; }
+
+        .about-header { text-align: center; padding: 80px 0 40px; }
+        
+        .contact-grid {
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        .info-card, .form-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+        }
+
+        .info-card h3, .form-card h3 {
+            font-family: var(--font-mono);
+            color: var(--orange);
+            font-size: 16px;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+
+        .info-item { display: flex; gap: 16px; margin-bottom: 20px; }
+        .info-icon {
+            width: 40px; height: 40px;
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .info-text strong { display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
+        .map-wrap { margin-top: 24px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+        .map-wrap iframe { width: 100%; height: 200px; border: none; display: block; }
+
+        .input-label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; }
+        .input-field {
+            width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+            padding: 14px 16px; color: var(--text); font-family: var(--font-mono); font-size: 16px; outline: none;
+        }
+
+        .form-group { margin-bottom: 16px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+        .btn-submit {
+            width: 100%; padding: 14px; background: var(--orange); color: #fff;
+            border: none; border-radius: 12px; font-family: var(--font-mono); font-size: 16px;
+            font-weight: 700; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-submit:hover { background: var(--orange2); transform: translateY(-2px); }
+
+        .success-msg {
+            display: none; background: rgba(16, 185, 129, 0.1); border: 1px solid var(--green);
+            color: var(--green); padding: 16px; border-radius: 12px; text-align: center; margin-top: 16px;
+        }
+
+        .faq { padding: 80px 0; }
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } }
+        .faq-item { background: var(--card); border-radius: 20px; padding: 24px; border: 1px solid var(--border); }
+        .faq-q { font-weight: 700; margin-bottom: 12px; font-family: var(--font-mono); color: var(--orange); }
+        .faq-a { font-size: 14px; color: var(--muted); }
+
+        footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="nav-logo">DövizTakip</a>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+            <div class="nav-links" id="nav-links">
+                <a href="/" id="nav-home" class="nav-link" data-t="nav_home">Anasayfa</a>
+                <a href="/hakkimizda" id="nav-about" class="nav-link" data-t="nav_about">Hakkımızda</a>
+                <a href="/iletisim" id="nav-contact" class="nav-link" data-t="nav_contact">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <div id="contact" class="page-section" style="padding-top: 80px;">
+        <header class="about-header container">
+            <h1 data-t="nav_contact">İletişim</h1>
+            <p data-t="contact_sub">Bir sorunuz veya öneriniz mi var? Sizden haber almaktan mutluluk duyarız.</p>
+        </header>
+
+        <section class="contact-grid">
+            <div class="info-card">
+                <h3 data-t="info_title">// BİLGİLERİMİZ</h3>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-text"><strong>ADRES</strong><span>Levent Mah. Büyükdere Cad. No:201<br>34394 Şişli / İstanbul</span></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-text"><strong>TELEFON</strong><span>+90 212 555 0147</span></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-text"><strong>E-POSTA</strong><span>emre.demir@doviztakip.com</span></div>
+                </div>
+                <div class="map-wrap">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3007.8!2d28.9833!3d41.0750!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab7a4e2da4e33%3A0x8e2b49f5e6a6e6e6!2sBüyükdere%20Cd.%2C%20Şişli%2Fİstanbul!5e0!3m2!1str!2str!4v1714168000000!5m2!1str!2str" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <h3 data-t="form_title">// MESAJ GÖNDERİN</h3>
+                <div class="form-row">
+                    <div class="form-group"><label class="input-label" data-t="fname">AD</label><input type="text" placeholder="Adınız" id="fname" class="input-field"/></div>
+                    <div class="form-group"><label class="input-label" data-t="lname">SOYAD</label><input type="text" placeholder="Soyadınız" id="lname" class="input-field"/></div>
+                </div>
+                <div class="form-group"><label class="input-label">E-POSTA</label><input type="email" placeholder="ornek@email.com" id="email" class="input-field"/></div>
+                <div class="form-group"><label class="input-label" data-t="message">MESAJ</label><textarea placeholder="Mesajınızı buraya yazın..." id="message-text" class="input-field" style="height: 120px;"></textarea></div>
+                <button class="btn-submit" onclick="submitContactForm()" data-t="send_now">GÖNDER →</button>
+                <div class="success-msg" id="successMsg">✅ Mesajınız alındı! En kısa sürede size dönüş yapacağız.</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Common FAQ Section -->
+    <section class="faq container">
+        <h2 style="font-family: var(--font-mono); font-size: 32px; font-weight: 700; color: var(--orange); display: flex; align-items: center; justify-content: center; margin-bottom: 40px; gap: 12px;"><span data-t="faq_title">Sıkça Sorulan Sorular</span></h2>
+        <div class="faq-grid" id="faq-container"></div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="copy">© 2026 DövizTakip</p>
+        </div>
+    </footer>
+
+    <script>
+        const TRANSLATIONS = {
+            tr: {
+                nav_home: 'Anasayfa', nav_about: 'Hakkımızda', nav_contact: 'İletişim',
+                contact_sub: 'Bir sorunuz veya öneriniz mi var? Sizden haber almaktan mutluluk duyarız.',
+                info_title: '// BİLGİLERİMİZ', form_title: '// MESAJ GÖNDERİN',
+                fname: 'AD', lname: 'SOYAD', send_now: 'GÖNDER →', faq_title: 'Sıkça Sorulan Sorular',
+                faq_q1: 'Kurlar ne sıklıkla güncellenir?', faq_a1: 'Döviz kurları piyasa hareketlerine göre anlık olarak güncellenmektedir.',
+                faq_q2: 'TÜFE nasıl hesaplanır?', faq_a2: 'TÜFE verileri resmi kurumların yıllık enflasyon oranları baz alınarak kümülatif olarak hesaplanır.',
+                faq_q3: 'Altın fiyatı nereden geliyor?', faq_a3: 'Altın fiyatları küresel ons fiyatı ve USD/TRY kuruna göre hesaplanmaktadır.',
+                faq_q4: 'Bu site ücretsiz mi?', faq_a4: 'Evet, tüm araçlarımız ve verilerimiz tamamen ücretsizdir.',
+                faq_q5: 'Mobil cihazlarda çalışıyor mu?', faq_a5: 'Evet, sitemiz tüm mobil cihazlarla tam uyumlu çalışmaktadır.',
+                faq_q6: 'Hangi para birimleri destekleniyor?', faq_a6: 'USD, EUR, GBP, CHF, SAR, AED gibi popüler tüm birimleri destekliyoruz.'
+            },
+            en: {
+                nav_home: 'Home', nav_about: 'About', nav_contact: 'Contact',
+                contact_sub: 'Have a question or suggestion? We would love to hear from you.',
+                info_title: '// OUR INFO', form_title: '// SEND A MESSAGE',
+                fname: 'FIRST NAME', lname: 'LAST NAME', send_now: 'SEND →', faq_title: 'Frequently Asked Questions',
+                faq_q1: 'How often are rates updated?', faq_a1: 'Rates are updated in real-time based on market movements.',
+                faq_q2: 'How is CPI calculated?', faq_a2: 'CPI is calculated cumulatively based on official annual inflation data.',
+                faq_q3: 'Where does gold price come from?', faq_a3: 'Gold prices are calculated based on global spot prices and USD/TRY rate.',
+                faq_q4: 'Is this site free?', faq_a4: 'Yes, all tools and data are completely free to use.',
+                faq_q5: 'Does it work on mobile?', faq_a5: 'Yes, our site is fully responsive on all devices.',
+                faq_q6: 'Which currencies are supported?', faq_a6: 'Major currencies like USD, EUR, GBP, CHF, SAR, AED are supported.'
+            }
+        };
+
+        let currentLang = 'tr';
+        window.onload = () => {
+            if (window.location.pathname === '/iletisim') document.getElementById('nav-contact')?.classList.add('active');
+            const savedLang = localStorage.getItem('lang');
+            setLanguage(savedLang || 'tr');
+            const hamburger = document.getElementById('hamburger');
+            if (hamburger) hamburger.onclick = () => document.getElementById('nav-links').classList.toggle('active');
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            document.documentElement.lang = lang;
+            const t = TRANSLATIONS[lang] || TRANSLATIONS.tr;
+            document.querySelectorAll('[data-t]').forEach(el => {
+                const key = el.getAttribute('data-t');
+                if (t[key]) el.innerHTML = t[key];
+            });
+            renderFAQ();
+        }
+
+        function submitContactForm() {
+            document.getElementById('successMsg').style.display = 'block';
+            setTimeout(() => { document.getElementById('successMsg').style.display = 'none'; }, 3000);
+        }
+
+        function renderFAQ() {
+            const container = document.getElementById('faq-container');
+            if (!container) return;
+            const t = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
+            const faqs = [
+                { q: t.faq_q1, a: t.faq_a1 }, { q: t.faq_q2, a: t.faq_a2 }, { q: t.faq_q3, a: t.faq_a3 },
+                { q: t.faq_q4, a: t.faq_a4 }, { q: t.faq_q5, a: t.faq_a5 }, { q: t.faq_q6, a: t.faq_a6 }
+            ];
+            container.innerHTML = faqs.map(i => `<div class="faq-item"><div class="faq-q">${i.q}</div><div class="faq-a">${i.a}</div></div>`).join('');
+        }
+    </script>
+</body>
+</html>

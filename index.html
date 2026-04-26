@@ -8,23 +8,25 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Rajdhani:wght@500;700&subset=latin,latin-ext&display=swap" rel="stylesheet">
     
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
         :root {
-            --navy: #0f172a;
-            --navy-light: #1e293b;
-            --gold: #f59e0b;
-            --white: #f8fafc;
-            --text-muted: #94a3b8;
+            --bg: #0a1628;
+            --bg2: #0f1f3d;
+            --card: #112244;
+            --orange: #f97316;
+            --orange2: #fb923c;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
             --green: #10b981;
             --red: #ef4444;
-            --border: rgba(255, 255, 255, 0.1);
-            --font-sans: 'Inter', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
+            --border: rgba(249, 115, 22, 0.2);
+            --font-sans: 'Rajdhani', sans-serif;
+            --font-mono: 'Space Mono', monospace;
         }
 
         * {
@@ -33,9 +35,13 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: var(--navy);
-            color: var(--white);
+            background-color: var(--bg);
+            color: var(--text);
             font-family: var(--font-sans);
             line-height: 1.6;
             overflow-x: hidden;
@@ -57,9 +63,9 @@
         .hero-badge {
             display: inline-block;
             padding: 6px 16px;
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--gold);
-            border: 1px solid var(--gold);
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--orange);
+            border: 1px solid var(--orange);
             border-radius: 100px;
             font-size: 14px;
             font-weight: 600;
@@ -74,11 +80,12 @@
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 20px;
+            color: var(--orange);
         }
 
         .hero p {
             font-size: 18px;
-            color: var(--text-muted);
+            color: var(--muted);
             max-width: 600px;
             margin: 0 auto 40px;
         }
@@ -90,9 +97,9 @@
         }
 
         .lang-btn {
-            background: var(--navy-light);
+            background: var(--bg2);
             border: 1px solid var(--border);
-            color: var(--white);
+            color: var(--text);
             padding: 8px 16px;
             border-radius: 12px;
             cursor: pointer;
@@ -102,14 +109,14 @@
         }
 
         .lang-btn:hover, .lang-btn.active {
-            border-color: var(--gold);
-            color: var(--gold);
-            background: rgba(245, 158, 11, 0.05);
+            border-color: var(--orange);
+            color: var(--orange);
+            background: rgba(249, 115, 22, 0.05);
         }
 
         /* Ticker Bar */
         .ticker-bar {
-            background: var(--navy-light);
+            background: var(--bg2);
             border-y: 1px solid var(--border);
             padding: 12px 0;
             overflow: hidden;
@@ -133,7 +140,7 @@
         }
 
         .ticker-item span {
-            color: var(--gold);
+            color: var(--orange);
             font-weight: 700;
         }
 
@@ -158,7 +165,7 @@
 
         /* Tool Cards */
         .card {
-            background: var(--navy-light);
+            background: var(--card);
             border-radius: 24px;
             padding: 32px;
             border: 1px solid var(--border);
@@ -176,6 +183,7 @@
             font-family: var(--font-mono);
             font-size: 20px;
             font-weight: 700;
+            color: var(--orange);
         }
 
         /* Form Elements */
@@ -187,7 +195,7 @@
             display: block;
             font-size: 12px;
             font-weight: 600;
-            color: var(--text-muted);
+            color: var(--muted);
             margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -195,11 +203,11 @@
 
         .input-field {
             width: 100%;
-            background: var(--navy);
+            background: var(--bg);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 14px 16px;
-            color: var(--white);
+            color: var(--text);
             font-family: var(--font-mono);
             font-size: 16px;
             outline: none;
@@ -207,7 +215,7 @@
         }
 
         .input-field:focus {
-            border-color: var(--gold);
+            border-color: var(--orange);
         }
 
         .quick-amounts {
@@ -219,7 +227,7 @@
         .quick-btn {
             background: rgba(255,255,255,0.05);
             border: 1px solid var(--border);
-            color: var(--white);
+            color: var(--text);
             padding: 6px 14px;
             border-radius: 8px;
             cursor: pointer;
@@ -229,13 +237,13 @@
         }
 
         .quick-btn:hover {
-            background: var(--gold);
-            color: var(--navy);
-            border-color: var(--gold);
+            background: var(--orange);
+            color: #fff;
+            border-color: var(--orange);
         }
 
         .result-box {
-            background: var(--navy);
+            background: var(--bg);
             border-radius: 16px;
             padding: 24px;
             text-align: center;
@@ -246,12 +254,12 @@
             font-family: var(--font-mono);
             font-size: 32px;
             font-weight: 700;
-            color: var(--gold);
+            color: var(--orange);
         }
 
         .result-meta {
             font-size: 12px;
-            color: var(--text-muted);
+            color: var(--muted);
             margin-top: 8px;
         }
 
@@ -289,7 +297,7 @@
 
         .col-table th {
             text-align: left;
-            color: var(--text-muted);
+            color: var(--muted);
             font-weight: 600;
             padding: 12px;
             border-bottom: 1px solid var(--border);
@@ -315,9 +323,9 @@
             justify-content: space-between;
             align-items: center;
             padding: 16px 20px;
-            background: var(--navy);
+            background: var(--bg);
             border-radius: 16px;
-            border-left: 4px solid var(--gold);
+            border-left: 4px solid var(--orange);
         }
 
         .gold-label {
@@ -327,30 +335,53 @@
         .gold-price {
             font-family: var(--font-mono);
             font-weight: 700;
-            color: var(--gold);
+            color: var(--orange);
         }
 
         /* Expert Section */
         .expert-section {
-            background: rgba(245, 158, 11, 0.03);
+            background: rgba(249, 115, 22, 0.03);
             border-radius: 32px;
-            padding: 80px 0;
+            padding: 80px 20px;
             text-align: center;
             margin: 60px 0;
         }
 
-        .expert-card {
-            max-width: 600px;
+        .expert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .expert-card {
+            padding: 20px;
         }
 
         .expert-img {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            border: 3px solid var(--gold);
+            border: 3px solid var(--orange);
             margin-bottom: 20px;
             object-fit: cover;
+        }
+
+        .expert-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--orange);
+            margin: 0 auto 20px;
+            background: var(--orange);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            font-family: var(--font-mono);
         }
 
         .expert-name {
@@ -361,7 +392,7 @@
         }
 
         .expert-title {
-            color: var(--gold);
+            color: var(--orange);
             font-weight: 600;
             font-size: 14px;
             text-transform: uppercase;
@@ -371,7 +402,7 @@
 
         .expert-bio {
             font-size: 16px;
-            color: var(--text-muted);
+            color: var(--muted);
             line-height: 1.6;
         }
 
@@ -393,7 +424,7 @@
         }
 
         .faq-item {
-            background: var(--navy-light);
+            background: var(--card);
             border-radius: 20px;
             padding: 24px;
             border: 1px solid var(--border);
@@ -403,12 +434,12 @@
             font-weight: 700;
             margin-bottom: 12px;
             font-family: var(--font-mono);
-            color: var(--gold);
+            color: var(--orange);
         }
 
         .faq-a {
             font-size: 14px;
-            color: var(--text-muted);
+            color: var(--muted);
         }
 
         /* Footer */
@@ -420,7 +451,7 @@
 
         .disclaimer {
             font-size: 12px;
-            color: var(--text-muted);
+            color: var(--muted);
             max-width: 400px;
             margin: 0 auto 20px;
         }
@@ -428,12 +459,12 @@
         .copy {
             font-family: var(--font-mono);
             font-size: 14px;
-            color: var(--gold);
+            color: var(--orange);
         }
 
         /* Navigation */
         .navbar {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(10, 22, 40, 0.8);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             padding: 16px 0;
@@ -465,7 +496,7 @@
             display: block;
             width: 25px;
             height: 2px;
-            background: var(--gold);
+            background: var(--orange);
             border-radius: 2px;
             transition: all 0.3s ease;
         }
@@ -482,7 +513,7 @@
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: var(--navy-light);
+                background: var(--card);
                 padding: 24px;
                 border-bottom: 1px solid var(--border);
                 gap: 16px;
@@ -496,7 +527,7 @@
         }
 
         .nav-link {
-            color: var(--white);
+            color: var(--text);
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
@@ -505,13 +536,13 @@
         }
 
         .nav-link:hover, .nav-link.active {
-            color: var(--gold);
+            color: var(--orange);
         }
 
         .nav-logo {
             font-family: var(--font-mono);
             font-weight: 700;
-            color: var(--gold);
+            color: var(--orange);
             text-decoration: none;
             font-size: 18px;
         }
@@ -530,7 +561,7 @@
         }
 
         .stat-card {
-            background: var(--navy-light);
+            background: var(--card);
             border: 1px solid var(--border);
             padding: 24px;
             border-radius: 20px;
@@ -542,20 +573,20 @@
             font-family: var(--font-mono);
             font-size: 20px;
             font-weight: 700;
-            color: var(--gold);
+            color: var(--orange);
             margin-bottom: 4px;
         }
 
         .stat-label {
             font-size: 12px;
-            color: var(--text-muted);
+            color: var(--muted);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .mission-box {
-            background: rgba(245, 158, 11, 0.05);
-            border: 1px dashed var(--gold);
+            background: rgba(249, 115, 22, 0.05);
+            border: 1px dashed var(--orange);
             padding: 32px;
             border-radius: 24px;
             text-align: center;
@@ -565,7 +596,7 @@
         .mission-title {
             font-family: var(--font-mono);
             font-size: 14px;
-            color: var(--gold);
+            color: var(--orange);
             margin-bottom: 12px;
             text-transform: uppercase;
         }
@@ -573,7 +604,116 @@
         .mission-text {
             font-size: 24px;
             font-weight: 600;
-            color: var(--white);
+            color: var(--text);
+        }
+
+        /* Contact Page Styles */
+        .contact-grid {
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        .info-card, .form-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+        }
+
+        .info-card h3, .form-card h3 {
+            font-family: var(--font-mono);
+            color: var(--orange);
+            font-size: 16px;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-text strong {
+            display: block;
+            font-size: 12px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .map-wrap {
+            margin-top: 24px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .map-wrap iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--orange);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-family: var(--font-mono);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: var(--orange2);
+            transform: translateY(-2px);
+        }
+
+        .success-msg {
+            display: none;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--green);
+            color: var(--green);
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 16px;
         }
 
         .hidden { display: none !important; }
@@ -589,7 +729,7 @@
 
     <nav class="navbar">
         <div class="container nav-content">
-            <a href="index.html" class="nav-logo">DövizTakip</a>
+            <a href="/" class="nav-logo">DövizTakip</a>
             
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -598,15 +738,15 @@
             </div>
 
             <div class="nav-links" id="nav-links">
-                <a href="index.html" class="nav-link active" data-t="nav_home">Home</a>
-                <a href="about.html" class="nav-link" data-t="nav_about">About</a>
-                <a href="contact.html" class="nav-link" data-t="nav_contact">Contact</a>
+                <a href="/" id="nav-home" class="nav-link" data-t="nav_home">Anasayfa</a>
+                <a href="/hakkimizda" id="nav-about" class="nav-link" data-t="nav_about">Hakkımızda</a>
+                <a href="/iletisim" id="nav-contact" class="nav-link" data-t="nav_contact">İletişim</a>
             </div>
         </div>
     </nav>
 
-    <div id="home-page">
-        <!-- Hero Section -->
+    <!-- SECTION:home -->
+    <div id="home" class="page-section">
         <header class="hero">
         <div class="container">
             <div class="hero-badge">⚡ Gerçek Zamanlı Kur Takibi</div>
@@ -750,37 +890,23 @@
                 </div>
             </section>
         </main>
-    </div>
+    </div> <!-- End Home Section -->
 
-    <!-- Expert Section -->
-    <section class="expert-section">
-        <div class="container">
-            <div class="expert-card">
-                <img src="https://i.postimg.cc/sfm096Fq/emre-demir.png" alt="Emre Demir" class="expert-img">
-                <div class="expert-name">Emre Demir</div>
-                <div class="expert-title">Finansal Analist</div>
-                <p class="expert-bio" data-t="expert_bio"></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
+    <!-- Common FAQ Section -->
     <section class="faq container">
-        <h2 class="card-title" style="justify-content: center; margin-bottom: 40px; font-size: 32px;">❓ <span data-t="faq_title">Sıkça Sorulan Sorular</span></h2>
+        <h2 style="font-family: var(--font-mono); font-size: 32px; font-weight: 700; color: var(--orange); display: flex; align-items: center; justify-content: center; margin-bottom: 40px; gap: 12px;"><span data-t="faq_title">Sıkça Sorulan Sorular</span></h2>
         <div class="faq-grid" id="faq-container">
             <!-- Populated by JS -->
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Global Footer -->
     <footer>
         <div class="container">
             <p class="disclaimer">Veriler bilgilendirme amaçlıdır. Yatırım tavsiyesi değildir.</p>
             <p class="copy">© 2026 DövizTakip</p>
         </div>
     </footer>
-
-    </div> <!-- End Home Page -->
 
     <script>
         // --- Configuration ---
@@ -843,18 +969,26 @@
                 faq_q6: 'Hangi para birimleri destekleniyor?',
                 faq_a6: 'USD, EUR, GBP, CHF, SAR, AED gibi popüler tüm birimleri destekliyoruz.',
                 expert_bio: 'Emre Demir, 16 yıldır Türk finans piyasalarında aktif olarak çalışmaktadır. Borsa İstanbul ve uluslararası döviz piyasalarında deneyim kazanan Demir, DövizTakip\'i vatandaşların günlük ekonomik kararlarını daha bilinçli vermelerine yardımcı olmak için kurmuştur.',
+                expert_title: 'Finansal Analist',
                 nav_home: 'Anasayfa',
                 nav_about: 'Hakkımızda',
                 nav_contact: 'İletişim',
                 about_title: 'Hakkımızda',
+                about_sub: 'Türkiye\'nin en kapsamlı döviz takip platformunun arkasındaki hikaye.',
+                contact_sub: 'Bir sorunuz veya öneriniz mi var? Sizden haber almaktan mutluluk duyarız.',
+                info_title: '// BİLGİLERİMİZ',
+                form_title: '// MESAJ GÖNDERİN',
+                fname: 'AD',
+                lname: 'SOYAD',
+                send_now: 'GÖNDER →',
                 stat_1_v: '16 YIL',
                 stat_1_l: 'Finans Deneyimi',
-                stat_2_v: 'GERÇEK ZAMANLI',
-                stat_2_l: 'Kur Takibi',
+                stat_2_v: 'CANLI',
+                stat_2_l: 'Gerçek Zamanlı Kur Takibi',
                 stat_3_v: '6 DİL',
                 stat_3_l: 'Desteği',
                 stat_4_v: 'ÜCRETSİZ',
-                stat_4_l: 'Platform',
+                stat_4_l: 'Ücretsiz Platform',
                 mission_label: 'Misyonumuz',
                 mission_text: 'Finansal bilgiyi herkes için erişilebilir kılmak',
                 trust_1: 'Veriler bilgilendirme amaçlıdır.',
@@ -894,10 +1028,18 @@
                 faq_q6: 'Which currencies are supported?',
                 faq_a6: 'Major currencies like USD, EUR, GBP, CHF, SAR, AED are supported.',
                 expert_bio: 'Emre Demir has been active in Turkish financial markets for 16 years. Having gained experience in Borsa Istanbul and international currency markets, Demir founded DövizTakip to help citizens make more informed daily economic decisions.',
+                expert_title: 'Financial Analyst',
                 nav_home: 'Home',
                 nav_about: 'About',
                 nav_contact: 'Contact',
                 about_title: 'About Us',
+                about_sub: 'The story behind Turkey\'s most comprehensive exchange rate platform.',
+                contact_sub: 'Have a question or suggestion? We would love to hear from you.',
+                info_title: '// OUR INFO',
+                form_title: '// SEND A MESSAGE',
+                fname: 'FIRST NAME',
+                lname: 'LAST NAME',
+                send_now: 'SEND →',
                 stat_1_v: '16 YEARS',
                 stat_1_l: 'Finance Experience',
                 stat_2_v: 'REAL-TIME',
@@ -930,24 +1072,34 @@
 
         // --- Init ---
         window.onload = () => {
+            const path = window.location.pathname;
+            if (path === '/' || path === '/index.html') document.getElementById('nav-home')?.classList.add('active');
+            else if (path === '/hakkimizda') document.getElementById('nav-about')?.classList.add('active');
+            else if (path === '/iletisim') document.getElementById('nav-contact')?.classList.add('active');
+
             updateData(); // First update to apply variations and pre-fill state
             
             const savedLang = localStorage.getItem('lang');
             setLanguage(savedLang || 'tr');
 
             // Hamburger toggle
-            document.getElementById('hamburger').onclick = () => {
-                document.getElementById('nav-links').classList.toggle('active');
-            };
+            const hamburger = document.getElementById('hamburger');
+            if (hamburger) {
+                hamburger.onclick = () => {
+                    document.getElementById('nav-links').classList.toggle('active');
+                };
+            }
             
             // Populate Start Year Select
             const yearSelect = document.getElementById('inf-year');
-            for (let y = 2024; y >= 2010; y--) {
-                const opt = document.createElement('option');
-                opt.value = y;
-                opt.innerText = y;
-                if (y === 2018) opt.selected = true;
-                yearSelect.appendChild(opt);
+            if (yearSelect) {
+                for (let y = 2024; y >= 2010; y--) {
+                    const opt = document.createElement('option');
+                    opt.value = y;
+                    opt.innerText = y;
+                    if (y === 2018) opt.selected = true;
+                    yearSelect.appendChild(opt);
+                }
             }
 
             updateData();
@@ -972,27 +1124,6 @@
 
             renderFAQ();
             updateUI();
-        }
-
-        function showPage(pageId) {
-            const home = document.getElementById('home-page');
-            const about = document.getElementById('about-page');
-            const navHome = document.getElementById('nav-home');
-            const navAbout = document.getElementById('nav-about');
-
-            if (pageId === 'home') {
-                home.classList.remove('hidden');
-                about.classList.add('hidden');
-                navHome.classList.add('active');
-                navAbout.classList.remove('active');
-                window.scrollTo(0,0);
-            } else {
-                home.classList.add('hidden');
-                about.classList.remove('hidden');
-                navHome.classList.remove('active');
-                navAbout.classList.add('active');
-                window.scrollTo(0,0);
-            }
         }
 
         function applyVariation(val) {
@@ -1050,8 +1181,46 @@
             ticker.innerHTML = html + html; // Double for loop
         }
 
+        function showPage(pageId) {
+            const navHome = document.getElementById('nav-home');
+            const navAbout = document.getElementById('nav-about');
+            const navContact = document.getElementById('nav-contact');
+
+            // Deactivate all navs
+            navHome.classList.remove('active');
+            navAbout.classList.remove('active');
+            navContact.classList.remove('active');
+
+            // Set active
+            if (pageId === 'home') navHome.classList.add('active');
+            else if (pageId === 'about') navAbout.classList.add('active');
+            else if (pageId === 'contact') navContact.classList.add('active');
+            
+            // Close mobile menu
+            document.getElementById('nav-links').classList.remove('active');
+        }
+
+        function submitContactForm() {
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message-text').value;
+            if (!email || !message) {
+                alert('Lütfen e-posta ve mesaj alanlarını doldurun.');
+                return;
+            }
+            document.getElementById('successMsg').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('successMsg').style.display = 'none';
+                document.getElementById('fname').value = '';
+                document.getElementById('lname').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('message-text').value = '';
+            }, 3000);
+        }
+
         function calculateConversion() {
-            const amount = parseFloat(document.getElementById('convert-amount').value) || 0;
+            const amountEl = document.getElementById('convert-amount');
+            if (!amountEl) return;
+            const amount = parseFloat(amountEl.value) || 0;
             const from = document.getElementById('from-currency').value;
             const to = document.getElementById('to-currency').value;
 
@@ -1063,13 +1232,20 @@
         }
 
         function setAmount(v) {
-            document.getElementById('convert-amount').value = v;
-            calculateConversion();
+            const amountEl = document.getElementById('convert-amount');
+            if (amountEl) {
+                amountEl.value = v;
+                calculateConversion();
+            }
         }
 
         function calculateInflation() {
-            const amount = parseFloat(document.getElementById('inf-amount').value) || 0;
-            const year = parseInt(document.getElementById('inf-year').value);
+            const amountEl = document.getElementById('inf-amount');
+            if (!amountEl) return;
+            const amount = parseFloat(amountEl.value) || 0;
+            const yearEl = document.getElementById('inf-year');
+            if (!yearEl) return;
+            const year = parseInt(yearEl.value);
             const currentYear = 2026;
 
             let m = 1;
@@ -1079,14 +1255,18 @@
 
             const result = amount / m;
             const t = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
-            document.getElementById('inflation-text').innerHTML = t.inf_msg
-                .replace('{year}', year)
-                .replace('{amount}', amount.toLocaleString())
-                .replace('{result}', result.toLocaleString(currentLang, { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+            const textEl = document.getElementById('inflation-text');
+            if (textEl) {
+                textEl.innerHTML = t.inf_msg
+                    .replace('{year}', year)
+                    .replace('{amount}', amount.toLocaleString())
+                    .replace('{result}', result.toLocaleString(currentLang, { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+            }
         }
 
         function renderCOL() {
             const tbody = document.getElementById('col-table-body');
+            if (!tbody) return;
             const usdTry = rates.TRY;
 
             tbody.innerHTML = COL_ITEMS.map(item => `
@@ -1100,6 +1280,7 @@
 
         function renderGold() {
             const container = document.getElementById('gold-container');
+            if (!container) return;
             const t = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
 
             const list = [
@@ -1119,6 +1300,7 @@
 
         function renderFAQ() {
             const container = document.getElementById('faq-container');
+            if (!container) return;
             const t = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
 
             const faqs = [
@@ -1139,7 +1321,9 @@
         }
 
         function initChart() {
-            const ctx = document.getElementById('historyChart').getContext('2d');
+            const chartCanvas = document.getElementById('historyChart');
+            if (!chartCanvas) return;
+            const ctx = chartCanvas.getContext('2d');
             
             // Mock historical data trending up
             const labels = ['Nis 25', 'May 25', 'Haz 25', 'Tem 25', 'Ağu 25', 'Eyl 25', 'Eki 25', 'Kas 25', 'Ara 25', 'Oca 26', 'Şub 26', 'Mar 26'];
@@ -1152,8 +1336,8 @@
                     datasets: [{
                         label: 'USD/TRY',
                         data: data,
-                        borderColor: '#f59e0b',
-                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        borderColor: '#f97316',
+                        backgroundColor: 'rgba(249, 115, 22, 0.1)',
                         borderWidth: 3,
                         fill: true,
                         tension: 0.4,
@@ -1165,8 +1349,8 @@
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { family: 'Inter' } } },
-                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { family: 'Inter' } } }
+                        x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { family: 'Rajdhani' } } },
+                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8', font: { family: 'Rajdhani' } } }
                     }
                 }
             });
