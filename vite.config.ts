@@ -13,6 +13,8 @@ export default defineConfig(({mode}) => {
           main: path.resolve(__dirname, 'index.html'),
           hakkimizda: path.resolve(__dirname, 'hakkimizda.html'),
           iletisim: path.resolve(__dirname, 'iletisim.html'),
+          dolar_kuru_neden_yukseliyor: path.resolve(__dirname, 'dolar-kuru-neden-yukseliyor.html'),
+          euro_tl_kuru_takibi: path.resolve(__dirname, 'euro-tl-kuru-takibi.html'),
         },
       },
     },

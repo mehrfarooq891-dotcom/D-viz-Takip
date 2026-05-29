@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Description -->
+    <meta name="description" content="2025 yılında dolar kuru neden yükseliyor? Küresel enflasyon, merkez bankaları kararları, cari açık ve iç makroekonomik dinamiklerin dolar/TL üzerindeki etkilerini inceleyen 600+ kelimelik kapsamlı analiz." />
+    <!-- Keywords -->
+    <meta name="keywords" content="dolar kuru neden yükseliyor, dolar 2025 analizi, dolar kuru yükseliş nedenleri, döviz kuru analizi 2025, enflasyon ve dolar" />
+    <meta name="author" content="DövizTakip" />
+    <title>Dolar Kuru Neden Yükseliyor? 2025 Analizi | DövizTakip</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Rajdhani:wght@500;700&subset=latin,latin-ext&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a1628;
+            --bg2: #0f1f3d;
+            --card: #112244;
+            --orange: #f97316;
+            --orange2: #fb923c;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --green: #10b981;
+            --red: #ef4444;
+            --border: rgba(249, 115, 22, 0.2);
+            --font-sans: 'Rajdhani', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--orange);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--card);
+                padding: 24px;
+                border-bottom: 1px solid var(--border);
+                gap: 16px;
+                text-align: center;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--orange);
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--orange);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Article Header */
+        .article-header {
+            padding: 60px 0 30px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--orange);
+            margin-bottom: 16px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .breadcrumb a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--orange);
+        }
+
+        .article-title {
+            font-family: var(--font-mono);
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 28px;
+            }
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: var(--muted);
+            font-family: var(--font-mono);
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .meta-tag {
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--orange);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            border: 1px solid var(--border);
+        }
+
+        /* Content Styles */
+        .article-content {
+            font-size: 17px;
+            color: #cbd5e1;
+            margin-bottom: 60px;
+        }
+
+        .article-content p {
+            margin-bottom: 24px;
+        }
+
+        .article-content h2 {
+            font-family: var(--font-mono);
+            color: var(--orange);
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--orange);
+            padding-left: 14px;
+        }
+
+        .article-content h3 {
+            font-family: var(--font-mono);
+            color: var(--orange2);
+            font-size: 19px;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 12px;
+        }
+
+        /* Callout Box */
+        .callout-box {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--orange);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 32px 0;
+        }
+
+        .callout-title {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .callout-text {
+            font-size: 15px;
+            color: var(--muted);
+        }
+
+        /* Highlight List */
+        .highlight-list {
+            margin: 24px 0;
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .highlight-list li {
+            position: relative;
+            margin-bottom: 12px;
+            padding-left: 24px;
+        }
+
+        .highlight-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--orange);
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background: rgba(249, 115, 22, 0.05);
+            border: 1px dashed var(--orange);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .cta-title {
+            font-family: var(--font-mono);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 12px;
+        }
+
+        .cta-text {
+            font-size: 15px;
+            color: var(--muted);
+            margin-bottom: 24px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.2s;
+            border: 1px solid var(--orange);
+        }
+
+        .cta-button:hover {
+            background: var(--orange2);
+            border-color: var(--orange2);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 80px;
+        }
+
+        .copy {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--orange);
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="nav-logo">DövizTakip</a>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links" id="nav-links">
+                <a href="/" id="nav-home" class="nav-link">Anasayfa</a>
+                <a href="/hakkimizda" id="nav-about" class="nav-link">Hakkımızda</a>
+                <a href="/iletisim" id="nav-contact" class="nav-link">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <article class="container">
+        <!-- Breadcrumb & Header -->
+        <header class="article-header">
+            <div class="breadcrumb">
+                <a href="/">Anasayfa</a> ➔ <span>Dolar Kuru Analizi</span>
+            </div>
+            <h1 class="article-title">Dolar Kuru Neden Yükseliyor? 2025 Analizi</h1>
+            <div class="article-meta">
+                <span>📅 28 Mayıs 2026</span>
+                <span>✍️ Makroekonomi Ekibi</span>
+                <span class="meta-tag">Finansal Analiz</span>
+            </div>
+        </header>
+
+        <!-- Main Content (600+ words) -->
+        <main class="article-content">
+            <p>
+                Küreselleşen dünya ekonomisinde döviz kurları, bir ülkenin makroekonomik sağlığını yansıtan en önemli göstergelerin başında gelir. Özellikle Türkiye gibi gelişmekte olan ve dışa bağımlı ham madde yapısına sahip ekonomilerde, <strong>dolar kuru</strong> hareketleri hem enflasyonu hem de hanehalkı satın alma gücünü doğrudan belirlemektedir. Bu analizimizde, 2025 yılı boyunca ve 2026 yılına uzanan süreçte Amerikan Doları’nın Türk Lirası karşısında gösterdiği yukarı yönlü trendin arkasındaki temel dinamikleri, yerel ve küresel bileşenleri ile inceliyoruz.
+            </p>
+
+            <h2>1. Küresel Dinamikler: Fed Faiz Politikaları ve Güçlü Dolar Endeksi (DXY)</h2>
+            <p>
+                Dolar kurunun küresel seyrini anlamak için her şeyden önce ABD Federal Rezerv (Fed) politikalarına bakmak gerekir. Fed'in enflasyonla mücadele kapsamında faiz oranlarını yüksek seviyelerde tutması veya beklenen faiz indirimlerini küresel jeopolitik gerilimler nedeniyle ötelemesi, gelişmekte olan piyasalardan sermaye çıkışına neden olmaktadır. 
+            </p>
+            <p>
+                Uluslararası yatırımcılar, risksiz getiri sağlayan ABD devlet tahvillerine yöneldikçe, Dolar Endeksi (DXY) gücünü korumaktadır. DXY endeksinin yüksek seyretmesi, Türk Lirası dahil olmak üzere tüm gelişmekte olan ülke para birimleri (EM currencies) üzerinde yapısal bir değer kaybı baskısı yaratmaktadır. 2025 yılında da küresel piyasalardaki risk iştahının dalgalı olması, güvenli liman olan ABD dolarına talebi canlı tutmuştur.
+            </p>
+
+            <div class="callout-box">
+                <div class="callout-title">Ekonomik Not: DXY Nedir?</div>
+                <div class="callout-text">
+                    Dolar Endeksi (DXY), ABD dolarının dünyadaki en önemli 6 yerel para birimi (Euro, Japon Yeni, İngiliz Sterlini, Kanada Doları, İsveç Kronu ve İsviçre Frangı) karşısındaki sepet değerini gösterir. DXY yükseldiğinde dolar küresel olarak değer kazanıyor demektir.
+                </div>
+            </div>
+
+            <h2>2. Yurtiçi Enflasyon ve Satın Alma Gücü Paritesi</h2>
+            <p>
+                Kur artışının en temel yerel sebebi, iki ülke arasındaki enflasyon farkıdır. Satın alma gücü paritesi teorisine göre, enflasyonu görece yüksek olan ülkenin para birimi, enflasyonu düşük olan ülkenin para birimi karşısında zamanla değer kaybeder. 
+            </p>
+            <p>
+                Türkiye'nin 2025 yılında da çift haneli enflasyon oranlarıyla mücadele etmesi, paranın iç değerinin (satın alma gücünün) azalmasına yol açmaktadır. Türk Lirası'nın iç piyasadaki değer kaybı, doğal olarak dış piyasalarda yabancı paralar karşısındaki değerine de devalüasyon yönünde yansır. Merkez Bankası'nın sıkı para politikası adımları kuru bir ölçüde dengelemeye çalışsa da, yapısal enflasyon beklentileri kuru yukarı doğru iten ana motor olmaya devam etmektedir.
+            </p>
+
+            <h2>3. Cari Açık ve Yapısal İthalat Bağımlılığı</h2>
+            <p>
+                Türkiye ekonomisinin yapısal sorunlarından biri de enerji ve ara malı üretiminde dışa bağımlılıktır. Üretim ve ihracat yapabilmek için ithalat yapma zorunluluğu, sürekli bir döviz talebi doğurur.
+            </p>
+            <p>
+                Dış ticaret dengesinin negatif vermesi (cari açık), ülkeden çıkan döviz miktarının giren döviz miktarından daha fazla olması anlamına gelir. Piyasada döviz arzı talebi karşılayamadığında, iktisadi bir kural olarak dövizin fiyatı (yani dolar kuru) yükselir. 2025 yılı boyunca küresel enerji fiyatlarının istikrarsız seyri ve hammadde maliyetleri, Türkiye'nin ithalat faturasını şişirerek döviz ihtiyacını ve kur üzerindeki baskıyı artırmıştır.
+            </p>
+
+            <ul class="highlight-list">
+                <li><strong>Enerji İthalatı:</strong> Doğalgaz ve petrol fiyatlarındaki dalgalanmalar doğrudan dolar talebini artırır.</li>
+                <li><strong>Dış Borç Ödemeleri:</strong> Özel sektör ve kamunun vadesi gelen milyarlarca dolarlık dış borç servisi dönemsel kur artışlarını tetikler.</li>
+                <li><strong>Yabancı Sermaye Girişleri:</strong> Doğrudan yabancı yatırımların (FDI) ve portföy yatırımlarının sınırlı kalması döviz girişini yavaşlatır.</li>
+            </ul>
+
+            <h2>4. Yatırımcı Davranışları ve Türk Lirası Mevduat Tercihleri</h2>
+            <p>
+                Son olarak, iç piyasadaki yerleşik bireysel ve kurumsal yatırımcıların davranışları kurları doğrudan etkiler. Enflasyona karşı birikimlerini korumak isteyen hanehalklarının "dolarizasyon" (mevduatlarını döviz veya altına çevirme) eğilimi, yerel talebi tetikleyen psikolojik bir unsurdur. 
+            </p>
+            <p>
+                Kur Korumalı Mevduat (KKM) sisteminden kademeli çıkış adımları ve TL mevduat faizlerinin seyri, yatırımcıların TL'de kalma veya dövize yönelme kararlarını doğrudan etkilemiştir. Yerli yatırımcının TL'ye olan güveninin ve getiri iştahının yüksek olduğu dönemlerde kurlar yatay seyrederken, güven sarsıldığında dövize yöneliş hızlanmakta ve kurda sert yükseliş hareketleri gözlenmektedir.
+            </p>
+
+            <h2>Sonuç: 2025 Değerlendirmesi ve Gelecek Öngörüleri</h2>
+            <p>
+                Özetlemek gerekirse; 2025 yılında dolar kuru yükselişi tek bir nedene bağlı olmayıp, <strong>Fed'in küresel faiz duruşu, Türkiye'deki yapısal enflasyon oranları, cari açık miktarı ve yatırımcı psikolojisi</strong> gibi çok bileşenli bir denklemden kaynaklanmaktadır. Önümüzdeki süreçte kur kararlılığının sağlanması; yapısal reformların kararlılıkla sürdürülmesine, enflasyonun kalıcı olarak düşürülmesine ve doğrudan yabancı kaynak girişinin artırılmasına bağlı olacaktır.
+            </p>
+
+            <div class="cta-box">
+                <div class="cta-title">Anlık Kurları Takip Edin</div>
+                <div class="cta-text">
+                    Dolar, Euro, Altın ve diğer tüm canlı finans verilerini en doğru ve kesintisiz şekilde izlemek için canlı takip platformumuza dönebilirsiniz.
+                </div>
+                <a href="/" class="cta-button">Canlı Döviz Takip Anasayfası</a>
+            </div>
+        </main>
+    </article>
+
+    <!-- Global Footer -->
+    <footer>
+        <div class="container">
+            <div style="margin: 0 0 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="/euro-tl-kuru-takibi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🇪🇺 Euro TL Kuru Takibi Nasıl Yapılır?</a>
+            </div>
+            <p class="copy">© 2026 DövizTakip</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        if (hamburger && navLinks) {
+            hamburger.onclick = () => {
+                navLinks.classList.toggle('active');
+            };
+        }
+    </script>
+</body>
+</html>
