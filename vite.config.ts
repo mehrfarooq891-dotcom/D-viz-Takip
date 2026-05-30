@@ -15,6 +15,7 @@ export default defineConfig(({mode}) => {
           iletisim: path.resolve(__dirname, 'iletisim.html'),
           dolar_kuru_neden_yukseliyor: path.resolve(__dirname, 'dolar-kuru-neden-yukseliyor.html'),
           euro_tl_kuru_takibi: path.resolve(__dirname, 'euro-tl-kuru-takibi.html'),
+          turkiye_enflasyonu_2025: path.resolve(__dirname, 'turkiye-enflasyonu-2025.html'),
         },
       },
     },
