@@ -51,6 +51,7 @@ async function startServer() {
   app.get("/dolar-kuru-neden-yukseliyor", (req, res) => servePage(req, res, 'dolar-kuru-neden-yukseliyor.html'));
   app.get("/euro-tl-kuru-takibi", (req, res) => servePage(req, res, 'euro-tl-kuru-takibi.html'));
   app.get("/turkiye-enflasyonu-2025", (req, res) => servePage(req, res, 'turkiye-enflasyonu-2025.html'));
+  app.get("/doviz-cevirici-nasil-kullanilir", (req, res) => servePage(req, res, 'doviz-cevirici-nasil-kullanilir.html'));
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);
