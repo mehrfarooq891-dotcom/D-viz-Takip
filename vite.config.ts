@@ -17,6 +17,7 @@ export default defineConfig(({mode}) => {
           euro_tl_kuru_takibi: path.resolve(__dirname, 'euro-tl-kuru-takibi.html'),
           turkiye_enflasyonu_2025: path.resolve(__dirname, 'turkiye-enflasyonu-2025.html'),
           doviz_cevirici_nasil_kullanilir: path.resolve(__dirname, 'doviz-cevirici-nasil-kullanilir.html'),
+          usd_try_paritesi: path.resolve(__dirname, 'usd-try-paritesi.html'),
         },
       },
     },
