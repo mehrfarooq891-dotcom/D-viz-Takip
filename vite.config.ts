@@ -18,6 +18,7 @@ export default defineConfig(({mode}) => {
           turkiye_enflasyonu_2025: path.resolve(__dirname, 'turkiye-enflasyonu-2025.html'),
           doviz_cevirici_nasil_kullanilir: path.resolve(__dirname, 'doviz-cevirici-nasil-kullanilir.html'),
           usd_try_paritesi: path.resolve(__dirname, 'usd-try-paritesi.html'),
+          altin_fiyatlari_doviz_iliskisi: path.resolve(__dirname, 'altin-fiyatlari-doviz-iliskisi.html'),
         },
       },
     },
