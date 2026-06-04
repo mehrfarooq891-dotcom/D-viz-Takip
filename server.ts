@@ -54,6 +54,7 @@ async function startServer() {
   app.get("/doviz-cevirici-nasil-kullanilir", (req, res) => servePage(req, res, 'doviz-cevirici-nasil-kullanilir.html'));
   app.get("/usd-try-paritesi", (req, res) => servePage(req, res, 'usd-try-paritesi.html'));
   app.get("/altin-fiyatlari-doviz-iliskisi", (req, res) => servePage(req, res, 'altin-fiyatlari-doviz-iliskisi.html'));
+  app.get("/dolar-almak-icin-en-iyi-zaman", (req, res) => servePage(req, res, 'dolar-almak-icin-en-iyi-zaman.html'));
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);
