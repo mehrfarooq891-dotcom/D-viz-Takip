@@ -22,6 +22,7 @@ export default defineConfig(({mode}) => {
           dolar_almak_icin_en_iyi_zaman: path.resolve(__dirname, 'dolar-almak-icin-en-iyi-zaman.html'),
           merkez_bankasi_faiz_kararlari: path.resolve(__dirname, 'merkez-bankasi-faiz-kararlari.html'),
           gbp_try_sterlin_analizi: path.resolve(__dirname, 'gbp-try-sterlin-analizi.html'),
+          dolar_mi_euro_mu_tutmali: path.resolve(__dirname, 'dolar-mi-euro-mu-tutmali.html'),
         },
       },
     },
