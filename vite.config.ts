@@ -23,6 +23,7 @@ export default defineConfig(({mode}) => {
           merkez_bankasi_faiz_kararlari: path.resolve(__dirname, 'merkez-bankasi-faiz-kararlari.html'),
           gbp_try_sterlin_analizi: path.resolve(__dirname, 'gbp-try-sterlin-analizi.html'),
           dolar_mi_euro_mu_tutmali: path.resolve(__dirname, 'dolar-mi-euro-mu-tutmali.html'),
+          tl_deger_kaybi_tarihsel: path.resolve(__dirname, 'tl-deger-kaybi-tarihsel.html'),
         },
       },
     },
