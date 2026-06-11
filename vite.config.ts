@@ -24,6 +24,7 @@ export default defineConfig(({mode}) => {
           gbp_try_sterlin_analizi: path.resolve(__dirname, 'gbp-try-sterlin-analizi.html'),
           dolar_mi_euro_mu_tutmali: path.resolve(__dirname, 'dolar-mi-euro-mu-tutmali.html'),
           tl_deger_kaybi_tarihsel: path.resolve(__dirname, 'tl-deger-kaybi-tarihsel.html'),
+          doviz_bozdurmak_banka_mi_doviz_burosu_mu: path.resolve(__dirname, 'doviz-bozdurmak-banka-mi-doviz-burosu-mu.html'),
         },
       },
     },
