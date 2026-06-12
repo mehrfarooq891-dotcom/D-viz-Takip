@@ -25,6 +25,7 @@ export default defineConfig(({mode}) => {
           dolar_mi_euro_mu_tutmali: path.resolve(__dirname, 'dolar-mi-euro-mu-tutmali.html'),
           tl_deger_kaybi_tarihsel: path.resolve(__dirname, 'tl-deger-kaybi-tarihsel.html'),
           doviz_bozdurmak_banka_mi_doviz_burosu_mu: path.resolve(__dirname, 'doviz-bozdurmak-banka-mi-doviz-burosu-mu.html'),
+          sar_try_suudi_riyali: path.resolve(__dirname, 'sar-try-suudi-riyali.html'),
         },
       },
     },

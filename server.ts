@@ -60,6 +60,7 @@ async function startServer() {
   app.get("/dolar-mi-euro-mu-tutmali", (req, res) => servePage(req, res, 'dolar-mi-euro-mu-tutmali.html'));
   app.get("/tl-deger-kaybi-tarihsel", (req, res) => servePage(req, res, 'tl-deger-kaybi-tarihsel.html'));
   app.get("/doviz-bozdurmak-banka-mi-doviz-burosu-mu", (req, res) => servePage(req, res, 'doviz-bozdurmak-banka-mi-doviz-burosu-mu.html'));
+  app.get("/sar-try-suudi-riyali", (req, res) => servePage(req, res, 'sar-try-suudi-riyali.html'));
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);
