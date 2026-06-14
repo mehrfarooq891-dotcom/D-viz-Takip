@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Description -->
+    <meta name="description" content="Enflasyondan korunma amacıyla döviz (Dolar, Euro) biriktirmek veya nakit tutmak ne kadar mantıklı? Döviz enflasyonu, reel getiri hesaplamaları ve alternatif koruma yöntemleri." />
+    <!-- Keywords -->
+    <meta name="keywords" content="enflasyondan korunmak, döviz tutmak mantıklı mı, dolar enflasyonu, euro enflasyonu, reel getiri, enflasyona karşı koruma, altın yatırımı" />
+    <meta name="author" content="DövizTakip" />
+    <title>Enflasyondan Korunmak İçin Döviz Tutmak Mantıklı mı? | DövizTakip</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Rajdhani:wght@500;700&subset=latin,latin-ext&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a1628;
+            --bg2: #0f1f3d;
+            --card: #112244;
+            --orange: #f97316;
+            --orange2: #fb923c;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --green: #10b981;
+            --red: #ef4444;
+            --border: rgba(249, 115, 22, 0.2);
+            --font-sans: 'Rajdhani', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--orange);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--card);
+                padding: 24px;
+                border-bottom: 1px solid var(--border);
+                gap: 16px;
+                text-align: center;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--orange);
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--orange);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Article Header */
+        .article-header {
+            padding: 60px 0 30px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--orange);
+            margin-bottom: 16px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .breadcrumb a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--orange);
+        }
+
+        .article-title {
+            font-family: var(--font-mono);
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 28px;
+            }
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: var(--muted);
+            font-family: var(--font-mono);
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .meta-tag {
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--orange);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            border: 1px solid var(--border);
+        }
+
+        /* Content Styles */
+        .article-content {
+            font-size: 17px;
+            color: #cbd5e1;
+            margin-bottom: 60px;
+        }
+
+        .article-content p {
+            margin-bottom: 24px;
+        }
+
+        .article-content h2 {
+            font-family: var(--font-mono);
+            color: var(--orange);
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--orange);
+            padding-left: 14px;
+        }
+
+        .article-content h3 {
+            font-family: var(--font-mono);
+            color: var(--orange2);
+            font-size: 19px;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 12px;
+        }
+
+        /* Callout Box */
+        .callout-box {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--orange);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 32px 0;
+        }
+
+        .callout-title {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .callout-text {
+            font-size: 15px;
+            color: var(--muted);
+        }
+
+        /* Highlight List */
+        .highlight-list {
+            margin: 24px 0;
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .highlight-list li {
+            position: relative;
+            margin-bottom: 12px;
+            padding-left: 24px;
+        }
+
+        .highlight-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--orange);
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background: rgba(249, 115, 22, 0.05);
+            border: 1px dashed var(--orange);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .cta-title {
+            font-family: var(--font-mono);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 12px;
+        }
+
+        .cta-text {
+            font-size: 15px;
+            color: var(--muted);
+            margin-bottom: 24px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.2s;
+            border: 1px solid var(--orange);
+        }
+
+        .cta-button:hover {
+            background: var(--orange2);
+            border-color: var(--orange2);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 80px;
+        }
+
+        .copy {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--orange);
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="nav-logo">DövizTakip</a>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links" id="nav-links">
+                <a href="/" id="nav-home" class="nav-link">Anasayfa</a>
+                <a href="/hakkimizda" id="nav-about" class="nav-link">Hakkımızda</a>
+                <a href="/iletisim" id="nav-contact" class="nav-link">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <article class="container">
+        <!-- Breadcrumb & Header -->
+        <header class="article-header">
+            <div class="breadcrumb">
+                <a href="/">Anasayfa</a> ➔ <span>Yatırım Psikolojisi ve Finans</span>
+            </div>
+            <h1 class="article-title">Enflasyondan Korunmak İçin Döviz Tutmak Mantıklı mı?</h1>
+            <div class="article-meta">
+                <span>📅 14 Haziran 2026</span>
+                <span>✍️ Makroekonomi ve Portföy Yönetimi Araştırmaları</span>
+                <span class="meta-tag">Yatırım Stratejileri</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="article-content">
+            <p>
+                Yüksek enflasyon ortamlarında bireylerin ve hanehalklarının en büyük endişesi şüphesiz ki alın teriyle kazandıkları birikimlerinin satın alma gücünü kaybetmesidir. Türkiye gibi gelişmekte olan piyasalarda enflasyondan korunmak için ilk akla gelen refleks geleneksel olarak döviz (özellikle Amerikan Doları veya Euro) satın almaktır. Halk arasında "dolarizasyon" olarak da adlandırılan bu davranış, geçmiş kriz dönemlerinde Türk Lirasındaki hızlı devalüasyon süreçlerinden korunmada başarılı olmuştur. Peki ama <strong>enflasyona karşı sadece döviz tutmak her dönemde mantıklı bir strateji midir?</strong> Bu yazımızda, bu finansal paradigmayı derinlemesine analiz ediyor ve gizli riskleri saptıyoruz.
+            </p>
+
+            <h2>1. Döviz de Kendine Has Bir Enflasyona Sahiptir</h2>
+            <p>
+                Döviz biriktirmenin en temel yanılgısı, Amerikan Dolarının veya Euronun küresel ölçekte sonsuza kadar sabit bir satın alma gücüne sahip olduğunu varsaymaktır. Gerçekte ise ne Dolar ne de Euro sıfır enflasyonlu birer para birimidir. Amerika Birleşik Devletleri (ABD) ve Euro Bölgesi kendi iç piyasalarında her yıl enflasyon yaşamaktadır. 
+            </p>
+            <p>
+                Örneğin, ABD'de yıllık enflasyon oranının %3-4 bandında seyrettiğini varsayalım. Bu durum, elinizde yastık altında veya banka hesabında faizsiz olarak tuttuğunuz her 100 Doların, bir yıl sonra ABD'deki mal ve hizmetler karşısında %3-4 değer kaybedeceği anlamına gelir. Yani, TL bazında döviz kurunuz yükselse de, küresel satın alma gücü pariteniz reel olarak aşınacaktır. Buna finansal okuryazarlık literatüründe <strong>"satın alma gücü erimesi"</strong> denir.
+            </p>
+
+            <div class="callout-box">
+                <div class="callout-title">Reel Getiri vs. Nominal Getiri Farkı</div>
+                <div class="callout-text">
+                    Döviz yatırımı yapanların genellikle düştüğü en büyük tuzak nominal illüzyondur. Dolar kurunun 30 TL'den 45 TL'ye çıktığı bir senaryoda teorik olarak %50 kâr etmiş görünürsünüz. Fakat bu süreçte ülkedeki genel enflasyon oranı (hayat pahalılığı) %60 artmışsa, sizin %50'lik nominal kazancınız aslında reel anlamda %10 oranında fakirleştiğinizi gösterir. Yatırım yaparken sadece kur artışına değil, kur artışının yerel ve küresel enflasyonun üzerinde olup olmadığına bakılmalıdır.
+                </div>
+            </div>
+
+            <h2>2. Sadece Döviz Tutmanın Finansal Riskleri</h2>
+            <p>
+                Sadece fiziki veya mevduat olarak döviz tutmayı tercih eden yatırımcılar şu makroekonomik ve operasyonel risklerle karşı karşıya kalırlar:
+            </p>
+
+            <ul class="highlight-list">
+                <li><strong>Faiz Getirisinin Yokluğu:</strong> Nakit olarak veya vadesiz döviz hesabında tutulan paralar herhangi bir ek getiri üretmez. Enflasyona karşı direnç göstermeleri sadece kur hareketine bağlıdır.</li>
+                <li><strong>Makas ve Vergi Komisyonları:</strong> Türkiye'de bankaların uyguladığı döviz alım-satım vergileri (BSMV) ve bankaların geniş tuttuğu kurlar, döviz alırken baştan kayba uğramanıza yol açabilir.</li>
+                <li><strong>Geri Çekilmeler ve Stabilite Dönemleri:</strong> Merkez bankalarının uyguladığı rasyonel ve sıkı para politikaları neticesinde döviz kurlarının uzun süre stabil kaldığı veya gerilediği dönemlerde (TL mevduat faizinin yüksek olduğu dönemler gibi) dövizde beklemek ciddi bir fırsat maliyeti yaratır.</li>
+            </ul>
+
+            <h2>3. Enflasyona Karşı Gerçek Koruma Sağlayan Alternatifler</h2>
+            <p>
+                Enflasyondan korunurken paranızın değer kaybetmesini engellemek ve hatta üzerine getiri eklemek için portföy çeşitlendirmesi zorunludur. Finans uzmanlarına göre, tek bir sepete tüm yumurtaları koymak yerine şu finansal enstrümanlar kullanılmalıdır:
+            </p>
+            <p>
+                <strong>Değerli Metaller (Altın ve Gümüş):</strong> Altın, insanlık tarihi boyunca enflasyona ve küresel likidite bolluğuna karşı en güvenli liman olmuştur. Doların kendi enflasyonuna karşı da bir koruma mekanizması sunduğundan, genellikle nakit dövize göre daha avantajlı bir korunma kalkanıdır.
+            </p>
+            <p>
+                <strong>Hisse Senetleri ve Fonlar:</strong> Doğru şirketlere, teknoloji ve üretim sektöründeki devlere ortak olmak, enflasyon oranının çok üzerinde büyüme potansiyeli sunar. Hisse senedi piyasaları uzun vadede enflasyon canavarını alt etme gücü en yüksek olan mekanizmalardan biridir.
+            </p>
+            <p>
+                <strong>Eurobond ve Yabancı Menkul Kıymetler:</strong> Eğer mutlaka döviz bazlı birikim yapmak istiyorsanız, bunu nakit olarak tutmak yerine döviz cinsinden borçlanma araçları olan Eurobond'lar vasıtasıyla değerlendirebilirsiniz. Bu sayede hem dövizin kur artışından yararlanır hem de yıllık %6-9 civarında dolar bazlı düzenli faiz geliri (kupon ödemesi) elde ederek doların kendi enflasyonunu sıfırlamış olursunuz.
+            </p>
+
+            <h2>Sonuç: Döviz Bir Yatırım Aracı Değil, Bir Para Birimidir</h2>
+            <p>
+                Özetlemek gerekirse; döviz, enflasyona karşı ani şok dönemlerinde geçici bir kalkan vazifesi görse de uzun vadeli, planlı ve kazançlı bir "yatırım aracı" değildir. Sadece dövize odaklanmak, küresel enflasyona yenik düşmenize ve paranızın reel satın alma gücünün günden güne erimesine neden olur. Finansal olarak güvende kalmanın yolu her zaman sepet çeşitlendirmesi yapmaktan geçer. 
+            </p>
+            <p>
+                Piyasalardaki anlık döviz kurlarını, altın fiyatlarını ve makas aralıklarını canlı olarak izlemek, en doğru veriler üzerinden portföyünüzü optimize etmek ve gelişmiş döviz çeviricilerimizi kullanarak anlık kararlarınızı en iyi düzeyde vermek için her zaman anasayfamızı kullanalım. Doğru bilgi ile hareket etmek, finansal özgürlüğün en önemli anahtarıdır.
+            </p>
+
+            <div class="cta-box">
+                <div class="cta-title">Piyasa Kurlarını ve Altın Fiyatlarını Canlı İzleyin</div>
+                <div class="cta-text">
+                    Serbest piyasada Dolar, Euro, Sterlin ve Altın fiyatlarının canlı grafik değişimlerini, bankaların dijital kur makaslarını ve karşılaştırmalı tablolarını keşfetmek için şimdi anasayfamızı ziyaret edin.
+                </div>
+                <a href="/" class="cta-button">Canlı Döviz Takip Anasayfası</a>
+            </div>
+        </main>
+    </article>
+
+    <!-- Global Footer -->
+    <footer>
+        <div class="container">
+            <div style="margin: 0 0 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="/dolar-kuru-neden-yukseliyor" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">📈 Dolar Kuru Neden Yükseliyor? 2025 Analizi</a>
+                <a href="/euro-tl-kuru-takibi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🇪🇺 Euro TL Kuru Takibi Nasıl Yapılır?</a>
+                <a href="/turkiye-enflasyonu-2025" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">📊 Türkiye Enflasyonu 2025: TÜFE Hesaplama Rehberi</a>
+                <a href="/doviz-cevirici-nasil-kullanilir" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🔄 Döviz Çevirici Nasıl Kullanılır?</a>
+                <a href="/usd-try-paritesi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💰 USD TRY Paritesi Analizi</a>
+                <a href="/altin-fiyatlari-doviz-iliskisi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🪙 Altın Fiyatları ve Döviz İlişkisi 2025</a>
+                <a href="/dolar-almak-icin-en-iyi-zaman" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💵 Dolar Almak İçin En İyi Zaman</a>
+                <a href="/merkez-bankasi-faiz-kararlari" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🏦 Merkez Bankası Faiz Kararları</a>
+                <a href="/gbp-try-sterlin-analizi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💷 GBP TRY Sterlin Analizi</a>
+                <a href="/dolar-mi-euro-mu-tutmali" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💵 Dolar mı Euro mu 2025</a>
+                <a href="/tl-deger-kaybi-tarihsel" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">📉 TL Değer Kaybı Tarihsel Dönemler</a>
+                <a href="/doviz-bozdurmak-banka-mi-doviz-burosu-mu" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🏢 Banka mı Döviz Bürosu mu?</a>
+                <a href="/sar-try-suudi-riyali" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🇸🇦 Suudi Riyali Kuru Analizi</a>
+                <a href="/enflasyondan-korunmak-doviz" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🛡️ Enflasyondan Dövizle Korunmak?</a>
+            </div>
+            <p class="copy">© 2026 DövizTakip</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        if (hamburger && navLinks) {
+            hamburger.onclick = () => {
+                navLinks.classList.toggle('active');
+            };
+        }
+    </script>
+</body>
+</html>

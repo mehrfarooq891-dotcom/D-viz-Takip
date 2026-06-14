@@ -26,6 +26,7 @@ export default defineConfig(({mode}) => {
           tl_deger_kaybi_tarihsel: path.resolve(__dirname, 'tl-deger-kaybi-tarihsel.html'),
           doviz_bozdurmak_banka_mi_doviz_burosu_mu: path.resolve(__dirname, 'doviz-bozdurmak-banka-mi-doviz-burosu-mu.html'),
           sar_try_suudi_riyali: path.resolve(__dirname, 'sar-try-suudi-riyali.html'),
+          enflasyondan_korunmak_doviz: path.resolve(__dirname, 'enflasyondan-korunmak-doviz.html'),
         },
       },
     },
