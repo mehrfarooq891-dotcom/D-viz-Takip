@@ -27,6 +27,7 @@ export default defineConfig(({mode}) => {
           doviz_bozdurmak_banka_mi_doviz_burosu_mu: path.resolve(__dirname, 'doviz-bozdurmak-banka-mi-doviz-burosu-mu.html'),
           sar_try_suudi_riyali: path.resolve(__dirname, 'sar-try-suudi-riyali.html'),
           enflasyondan_korunmak_doviz: path.resolve(__dirname, 'enflasyondan-korunmak-doviz.html'),
+          chf_try_isvicre_frangi: path.resolve(__dirname, 'chf-try-isvicre-frangi.html'),
         },
       },
     },
