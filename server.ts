@@ -63,6 +63,7 @@ async function startServer() {
   app.get("/sar-try-suudi-riyali", (req, res) => servePage(req, res, 'sar-try-suudi-riyali.html'));
   app.get("/enflasyondan-korunmak-doviz", (req, res) => servePage(req, res, 'enflasyondan-korunmak-doviz.html'));
   app.get("/chf-try-isvicre-frangi", (req, res) => servePage(req, res, 'chf-try-isvicre-frangi.html'));
+  app.get("/yurt-disina-para-gonderme", (req, res) => servePage(req, res, 'yurt-disina-para-gonderme.html'));
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);

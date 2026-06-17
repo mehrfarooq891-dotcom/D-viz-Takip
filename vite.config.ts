@@ -28,6 +28,7 @@ export default defineConfig(({mode}) => {
           sar_try_suudi_riyali: path.resolve(__dirname, 'sar-try-suudi-riyali.html'),
           enflasyondan_korunmak_doviz: path.resolve(__dirname, 'enflasyondan-korunmak-doviz.html'),
           chf_try_isvicre_frangi: path.resolve(__dirname, 'chf-try-isvicre-frangi.html'),
+          yurt_disina_para_gonderme: path.resolve(__dirname, 'yurt-disina-para-gonderme.html'),
         },
       },
     },
