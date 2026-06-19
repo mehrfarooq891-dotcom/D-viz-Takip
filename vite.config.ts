@@ -30,6 +30,7 @@ export default defineConfig(({mode}) => {
           chf_try_isvicre_frangi: path.resolve(__dirname, 'chf-try-isvicre-frangi.html'),
           yurt_disina_para_gonderme: path.resolve(__dirname, 'yurt-disina-para-gonderme.html'),
           kripto_para_mi_doviz_mi: path.resolve(__dirname, 'kripto-para-mi-doviz-mi.html'),
+          dolar_endeksi_dxy_nedir: path.resolve(__dirname, 'dolar-endeksi-dxy-nedir.html'),
         },
       },
     },
