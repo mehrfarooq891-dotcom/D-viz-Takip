@@ -31,6 +31,7 @@ export default defineConfig(({mode}) => {
           yurt_disina_para_gonderme: path.resolve(__dirname, 'yurt-disina-para-gonderme.html'),
           kripto_para_mi_doviz_mi: path.resolve(__dirname, 'kripto-para-mi-doviz-mi.html'),
           dolar_endeksi_dxy_nedir: path.resolve(__dirname, 'dolar-endeksi-dxy-nedir.html'),
+          emekli_doviz_tasarrufu: path.resolve(__dirname, 'emekli-doviz-tasarrufu.html'),
         },
       },
     },
