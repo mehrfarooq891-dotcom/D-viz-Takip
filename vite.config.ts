@@ -33,6 +33,7 @@ export default defineConfig(({mode}) => {
           dolar_endeksi_dxy_nedir: path.resolve(__dirname, 'dolar-endeksi-dxy-nedir.html'),
           emekli_doviz_tasarrufu: path.resolve(__dirname, 'emekli-doviz-tasarrufu.html'),
           aed_try_dirhem_kuru: path.resolve(__dirname, 'aed-try-dirhem-kuru.html'),
+          doviz_hesabi_acmak: path.resolve(__dirname, 'doviz-hesabi-acmak.html'),
         },
       },
     },
