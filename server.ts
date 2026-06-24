@@ -70,6 +70,7 @@ async function startServer() {
   app.get("/aed-try-dirhem-kuru", (req, res) => servePage(req, res, 'aed-try-dirhem-kuru.html'));
   app.get("/doviz-hesabi-acmak", (req, res) => servePage(req, res, 'doviz-hesabi-acmak.html'));
   app.get("/kira-odemelerinde-doviz", (req, res) => servePage(req, res, 'kira-odemelerinde-doviz.html'));
+  app.get("/doviz-alim-satim-vergileri", (req, res) => servePage(req, res, 'doviz-alim-satim-vergileri.html'));
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);
