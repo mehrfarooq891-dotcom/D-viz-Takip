@@ -37,6 +37,7 @@ export default defineConfig(({mode}) => {
           kira_odemelerinde_doviz: path.resolve(__dirname, 'kira-odemelerinde-doviz.html'),
           doviz_alim_satim_vergileri: path.resolve(__dirname, 'doviz-alim-satim-vergileri.html'),
           rub_try_ruble_kuru: path.resolve(__dirname, 'rub-try-ruble-kuru.html'),
+          doviz_alirken_dikkat_edilmesi_gerekenler: path.resolve(__dirname, 'doviz-alirken-dikkat-edilmesi-gerekenler.html'),
         },
       },
     },
