@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Description -->
+    <meta name="description" content="Türkiye'deki cari açık nedir ve cari dengenin döviz kurları (USD/TRY, EUR/TRY) üzerindeki etkileri nelerdir? Cari açığın finansmanı, ithalat-ihracat dengesi ve kur ilişkisi." />
+    <!-- Keywords -->
+    <meta name="keywords" content="türkiye cari açık, cari açık döviz kuru ilişkisi, cari açık nedir, ithalat ihracat dengesi tl, dolar kuru cari açık etkisi" />
+    <meta name="author" content="DövizTakip" />
+    <title>Türkiye Cari Açık ve Döviz Kuruna Etkisi | DövizTakip</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Rajdhani:wght@500;700&subset=latin,latin-ext&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a1628;
+            --bg2: #0f1f3d;
+            --card: #112244;
+            --orange: #f97316;
+            --orange2: #fb923c;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --green: #10b981;
+            --red: #ef4444;
+            --border: rgba(249, 115, 22, 0.2);
+            --font-sans: 'Rajdhani', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--orange);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--card);
+                padding: 24px;
+                border-bottom: 1px solid var(--border);
+                gap: 16px;
+                text-align: center;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--orange);
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--orange);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Article Header */
+        .article-header {
+            padding: 60px 0 30px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--orange);
+            margin-bottom: 16px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .breadcrumb a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--orange);
+        }
+
+        .article-title {
+            font-family: var(--font-mono);
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 28px;
+            }
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: var(--muted);
+            font-family: var(--font-mono);
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .meta-tag {
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--orange);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            border: 1px solid var(--border);
+        }
+
+        /* Content Styles */
+        .article-content {
+            font-size: 17px;
+            color: #cbd5e1;
+            margin-bottom: 60px;
+        }
+
+        .article-content p {
+            margin-bottom: 24px;
+        }
+
+        .article-content h2 {
+            font-family: var(--font-mono);
+            color: var(--orange);
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--orange);
+            padding-left: 14px;
+        }
+
+        .article-content h3 {
+            font-family: var(--font-mono);
+            color: var(--orange2);
+            font-size: 19px;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 12px;
+        }
+
+        /* Callout Box */
+        .callout-box {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--orange);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 32px 0;
+        }
+
+        .callout-title {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .callout-text {
+            font-size: 15px;
+            color: var(--muted);
+        }
+
+        /* Highlight List */
+        .highlight-list {
+            margin: 24px 0;
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .highlight-list li {
+            position: relative;
+            margin-bottom: 12px;
+            padding-left: 24px;
+        }
+
+        .highlight-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--orange);
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background: rgba(249, 115, 22, 0.05);
+            border: 1px dashed var(--orange);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .cta-title {
+            font-family: var(--font-mono);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 12px;
+        }
+
+        .cta-text {
+            font-size: 15px;
+            color: var(--muted);
+            margin-bottom: 24px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.2s;
+            border: 1px solid var(--orange);
+        }
+
+        .cta-button:hover {
+            background: var(--orange2);
+            border-color: var(--orange2);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 80px;
+        }
+
+        .copy {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--orange);
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="nav-logo">DövizTakip</a>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links" id="nav-links">
+                <a href="/" id="nav-home" class="nav-link">Anasayfa</a>
+                <a href="/hakkimizda" id="nav-about" class="nav-link">Hakkımızda</a>
+                <a href="/iletisim" id="nav-contact" class="nav-link">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <article class="container">
+        <!-- Breadcrumb & Header -->
+        <header class="article-header">
+            <div class="breadcrumb">
+                <a href="/">Anasayfa</a> ➔ <span>Makroekonomi Analizleri</span>
+            </div>
+            <h1 class="article-title">Türkiye Cari Açık ve Döviz Kuruna Etkisi</h1>
+            <div class="article-meta">
+                <span>📅 27 Haziran 2026</span>
+                <span>✍️ Makroekonomik Araştırmalar ve Analiz Birimi</span>
+                <span class="meta-tag">Ekonomik Göstergeler</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="article-content">
+            <p>
+                Bir ülkenin dış dünyayla olan tüm ekonomik ilişkilerini özetleyen ödemeler dengesi tablosunun en kritik alt kalemi şüphesiz cari işlemler dengesidir. Türkiye ekonomisinde uzun yıllardır yapısal bir sorun olarak tartışılan ve finansal piyasalar üzerinde belirleyici bir baskı unsuru olan **cari açık (cari işlemler açığı)**, doğrudan döviz kurlarının (USD/TRY, EUR/TRY) yönünü tayin eden en temel makroekonomik değişkenlerden biridir. Peki, cari açık tam olarak nedir, Türkiye ekonomisinde neden kronik bir hal almıştır ve bu açığın büyümesi ya da küçülmesi cebimizdeki döviz kuruna nasıl yansımaktadır? Bu analizimizde cari açık ile döviz kuru arasındaki çift yönlü ve dinamik ilişkiyi makroekonomik temeller çerçevesinde ele alıyoruz.
+            </p>
+
+            <h2>1. Cari Açık Nedir? Temel Ekonomik Tanım</h2>
+            <p>
+                Basit bir anlatımla cari açık; bir ülkenin ihraç ettiği mal ve hizmetlerden elde ettiği döviz gelirlerinin, ithal ettiği mal ve hizmetler için ödediği döviz giderlerinden az olması durumunda ortaya çıkan negatif farktır. Cari denge; dış ticaret dengesi (ithalat-ihracat), hizmetler dengesi (turizm, taşımacılık gelirleri), birincil gelir dengesi (yatırım gelir ve giderleri) ve ikincil gelir dengesi (karşılıksız transferler) kalemlerinin toplamından oluşur.
+            </p>
+            <p>
+                Eğer bir ülke dışarıya sattığından daha fazlasını dışarıdan satın alıyorsa, aradaki bu farkı kapatabilmek için dövize ihtiyaç duyar. İşte bu döviz ihtiyacı, cari açığın finansmanı zorunluluğunu doğurur. Cari açığı finanse etmek için ülkeye dışarıdan sermaye (doğrudan yatırımlar, sıcak para, portföy yatırımları veya dış borç) girmesi gerekir.
+            </p>
+
+            <div class="callout-box">
+                <div class="callout-title">Türkiye'nin Yapısal Enerji Bağımlılığı</div>
+                <div class="callout-text">
+                    Türkiye ekonomisindeki cari açığın en büyük bileşenlerinden biri enerji ithalatıdır. Petrol, doğalgaz ve kömür gibi birincil enerji kaynaklarında dışa bağımlılık oranı yüksek olan Türkiye, küresel enerji fiyatlarının (Brent petrol, doğalgaz endeksleri) yükseldiği dönemlerde otomatik olarak daha fazla ithalat faturasıyla karşılaşır. Bu durum dış ticaret açığını genişletirken doğrudan cari açığı büyütür ve döviz talebini tırmandırır.
+                </div>
+            </div>
+
+            <h2>2. Cari Açık ve Döviz Kuru İlişkisi Nasıl Çalışır?</h2>
+            <p>
+                Ekonomide her mal ve hizmet gibi yabancı paraların (dövizin) değeri de arz ve talep kanunlarına göre belirlenir. Cari açık ile döviz kuru arasındaki temel ilişki şu mekanizma üzerinden işler:
+            </p>
+            <p>
+                <strong>Döviz Talebinin Artması:</strong> Cari açığı olan bir ülke, ürettiğinden fazla tükettiği için dışarıya sürekli döviz ödemek zorundadır. Bu durum, piyasada sürekli ve doğal bir döviz talebi (özellikle ABD Doları ve Euro) yaratır. İthalatçı firmalar, ham madde tedarikçileri ve borçlu şirketler sürekli döviz satın almak için piyasaya girerler. Arzın sabit kaldığı veya yetersiz olduğu bir ortamda, döviz talebinin sürekli yüksek olması dövizin yerel para birimi (Türk Lirası) karşısında değer kazanmasına (kurun yükselmesine) neden olur.
+            </p>
+            <p>
+                <strong>Finansman Kalitesi ve Sıcak Para Bağımlılığı:</strong> Cari açığın kendisi kadar, bu açığın nasıl finanse edildiği de önemlidir. Eğer açık; doğrudan yabancı yatırımlar (fabrika kurulumları, uzun vadeli sermaye) ile finanse ediliyorsa kurlar üzerinde ani ve yıkıcı bir etki oluşturmaz. Ancak açık; "sıcak para" dediğimiz kısa vadeli portföy yatırımları ve borçlanma ile finanse ediliyorsa, küresel risk iştahının düştüğü en ufak bir sarsıntıda bu sermaye ülkeden hızlıca kaçabilir. Sermaye çıkışı başladığında döviz arzı aniden daralır, talep fırlar ve bu da döviz kurlarında şok yükselişlere zemin hazırlar.
+            </p>
+
+            <h2>3. Devalüasyon ve Cari Denge Sarkaç Etkisi (J-Eğrisi)</h2>
+            <p>
+                İktisat teorisinde kur artışlarının cari açığı zamanla kapatması beklenir. Döviz kuru yükseldiğinde yabancı para birimleri karşısında Türk Lirası değer kaybeder. Bu durum iki sonuç doğurur:
+            </p>
+
+            <ul class="highlight-list">
+                <li><strong>İthalatın Pahalılaşması:</strong> Dövizle ithal edilen ham maddeler ve tüketim ürünleri TL bazında pahalılaşacağı için yerel tüketici ithal ürün talebini azaltır. Bu da ithalat hacmini daraltır.</li>
+                <li><strong>İhracatın Rekabetçi Hale Gelmesi:</strong> TL'nin değer kaybetmesiyle birlikte Türk ihraç ürünlerinin yabancı para cinsinden fiyatı düşer. Türk malları dış pazarlarda daha ucuz ve rekabetçi hale gelerek ihracat gelirlerinin artmasını sağlar.</li>
+                <li><strong>J-Eğrisi Etkisi:</strong> Teoride kur yükseldikten hemen sonra cari açık hemen kapanmaz, hatta sözleşmeler döviz cinsinden olduğu için ilk başta açık daha da büyüyebilir. Ancak orta ve uzun vadede ithalatın azalması ve ihracatın artmasıyla cari açık daralmaya başlar. Buna ekonomi literatüründe J-Eğrisi etkisi denir.</li>
+            </ul>
+
+            <h2>Sonuç: Cari Açığı İzlemek Gelecekteki Kurları Öngörmektir</h2>
+            <p>
+                Özetle; Türkiye'deki cari işlemler dengesi verileri, döviz kurlarının uzun vadeli dengelenme noktalarını belirleyen en şeffaf pusuladır. Cari açığın milli gelire oranının büyümesi, kurlar üzerindeki yukarı yönlü baskının devam edeceğine işaret ederken; cari dengede sağlanan iyileşmeler ve turizm gelirlerindeki rekorlar Türk Lirası'na nefes aldırarak kurlardaki oynaklığı azaltır. Finansal kararlar alırken sadece günlük ekran fiyatlarına değil, aylık açıklanan Ödemeler Dengesi ve Cari Açık verilerine de odaklanmak rasyonel bir yatırım stratejisinin vazgeçilmez parçasıdır.
+            </p>
+            <p>
+                DövizTakip platformu olarak, Türkiye ve dünya ekonomisindeki bu kritik makroekonomik gelişmeleri anlık piyasa fiyatlarıyla entegre şekilde sizlere sunuyoruz. Cari dengenin, enflasyonun ve faiz kararlarının döviz kurları üzerindeki anlık yansımalarını izlemek, grafikler ve karşılaştırmalı tablolarla piyasayı analiz etmek için dilediğiniz an anasayfamıza yönelebilirsiniz. Doğru ekonomik analizler ile birikimlerinize en doğru yönü verin.
+            </p>
+
+            <div class="cta-box">
+                <div class="cta-title">Piyasalardaki Tüm Hareketleri Canlı Verilerle Takip Edin</div>
+                <div class="cta-text">
+                    Serbest piyasada ve bankalarda gerçekleşen anlık döviz kurlarını izlemek, canlı grafikler üzerinden makroekonomik dalgalanmaları yorumlamak ve akıllı finansal analizlere ulaşmak için şimdi anasayfamızı ziyaret edin.
+                </div>
+                <a href="/" class="cta-button">Canlı Döviz Takip Anasayfası</a>
+            </div>
+        </main>
+    </article>
+
+    <!-- Global Footer -->
+    <footer>
+        <div class="container">
+            <div style="margin: 0 0 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="/dolar-kuru-neden-yukseliyor" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">📈 Dolar Kuru Neden Yükseliyor? 2025 Analizi</a>
+                <a href="/euro-tl-kuru-takibi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🇪🇺 Euro TL Kuru Takibi Nasıl Yapılır?</a>
+                <a href="/turkiye-enflasyonu-2025" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">📊 Türkiye Enflasyonu 2025: TÜFE Hesaplama Rehberi</a>
+                <a href="/doviz-cevirici-nasil-kullanilir" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🔄 Döviz Çevirici Nasıl Kullanılır?</a>
+                <a href="/usd-try-paritesi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💰 USD TRY Paritesi Analizi</a>
+                <a href="/altin-fiyatlari-doviz-iliskisi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🪙 Altın Fiyatları ve Döviz İlişkisi 2025</a>
+                <a href="/dolar-almak-icin-en-iyi-zaman" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💵 Dolar Almak İçin En İyi Zaman</a>
+                <a href="/merkez-bankasi-faiz-kararlari" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🏦 Merkez Bankası Faiz Kararları</a>
+                <a href="/gbp-try-sterlin-analizi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💷 GBP TRY Sterlin Analizi</a>
+                <a href="/dolar-mi-euro-mu-tutmali" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💵 Dolar mı Euro mu 2025</a>
+                <a href="/tl-deger-kaybi-tarihsel" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">📉 TL Değer Kaybı Tarihsel Dönemler</a>
+                <a href="/doviz-bozdurmak-banka-mi-doviz-burosu-mu" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🏢 Banka mı Döviz Bürosu mu?</a>
+                <a href="/sar-try-suudi-riyali" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🇸🇦 Suudi Riyali Kuru Analizi</a>
+                <a href="/enflasyondan-korunmak-doviz" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🛡️ Enflasyondan Dövizle Korunmak?</a>
+                <a href="/chf-try-isvicre-frangi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🇨🇭 İsviçre Frangı Kuru Analizi</a>
+                <a href="/yurt-disina-para-gonderme" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💸 Yurt Dışına Para Gönderme</a>
+                <a href="/kripto-para-mi-doviz-mi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🪙 Kripto Para mı Döviz mi?</a>
+                <a href="/dolar-endeksi-dxy-nedir" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">📉 Dolar Endeksi (DXY) Nedir?</a>
+                <a href="/emekli-doviz-tasarrufu" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🛡️ Emekli Döviz Tasarrufu</a>
+                <a href="/aed-try-dirhem-kuru" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🇦🇪 BAE Dirhemi Kuru Analizi</a>
+                <a href="/doviz-hesabi-acmak" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💳 Döviz Hesabı Açmak</a>
+                <a href="/kira-odemelerinde-doviz" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🏠 Kira Ödemelerinde Döviz</a>
+                <a href="/doviz-alim-satim-vergileri" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">⚖️ Döviz Alım Satım Vergileri</a>
+                <a href="/rub-try-ruble-kuru" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🇷🇺 Rus Rublesi Kuru Analizi</a>
+                <a href="/doviz-alirken-dikkat-edilmesi-gerekenler" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💡 Döviz Alırken Dikkat Edilmesi Gerekenler</a>
+                <a href="/turkiye-cari-acik-doviz-etkisi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">📊 Cari Açık ve Döviz Kuruna Etkisi</a>
+            </div>
+            <p class="copy">© 2026 DövizTakip</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        if (hamburger && navLinks) {
+            hamburger.onclick = () => {
+                navLinks.classList.toggle('active');
+            };
+        }
+    </script>
+</body>
+</html>

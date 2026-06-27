@@ -73,6 +73,7 @@ async function startServer() {
   app.get("/doviz-alim-satim-vergileri", (req, res) => servePage(req, res, 'doviz-alim-satim-vergileri.html'));
   app.get("/rub-try-ruble-kuru", (req, res) => servePage(req, res, 'rub-try-ruble-kuru.html'));
   app.get("/doviz-alirken-dikkat-edilmesi-gerekenler", (req, res) => servePage(req, res, 'doviz-alirken-dikkat-edilmesi-gerekenler.html'));
+  app.get("/turkiye-cari-acik-doviz-etkisi", (req, res) => servePage(req, res, 'turkiye-cari-acik-doviz-etkisi.html'));
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);
