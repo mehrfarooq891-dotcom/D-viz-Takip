@@ -39,6 +39,7 @@ export default defineConfig(({mode}) => {
           rub_try_ruble_kuru: path.resolve(__dirname, 'rub-try-ruble-kuru.html'),
           doviz_alirken_dikkat_edilmesi_gerekenler: path.resolve(__dirname, 'doviz-alirken-dikkat-edilmesi-gerekenler.html'),
           turkiye_cari_acik_doviz_etkisi: path.resolve(__dirname, 'turkiye-cari-acik-doviz-etkisi.html'),
+          ogrenciler_icin_yurt_disi_doviz_rehberi: path.resolve(__dirname, 'ogrenciler-icin-yurt-disi-doviz-rehberi.html'),
         },
       },
     },
