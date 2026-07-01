@@ -41,6 +41,7 @@ export default defineConfig(({mode}) => {
           turkiye_cari_acik_doviz_etkisi: path.resolve(__dirname, 'turkiye-cari-acik-doviz-etkisi.html'),
           ogrenciler_icin_yurt_disi_doviz_rehberi: path.resolve(__dirname, 'ogrenciler-icin-yurt-disi-doviz-rehberi.html'),
           tatilde_doviz_mi_kart_mi: path.resolve(__dirname, 'tatilde-doviz-mi-kart-mi.html'),
+          doviz_takip_uygulamalari: path.resolve(__dirname, 'doviz-takip-uygulamalari.html'),
         },
       },
     },

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Description -->
+    <meta name="description" content="2025 yılında döviz kurlarını, altın fiyatlarını ve pariteleri anlık izlemek için en iyi 5 döviz takip uygulamasını inceledik. Birinci sıradaki DövizTakip ile finansal kararlarınızı hızlandırın." />
+    <!-- Keywords -->
+    <meta name="keywords" content="en iyi döviz uygulamaları, döviz takip uygulaması, canlı döviz programları, dolar euro takip mobil, döviztakip canlı analiz" />
+    <meta name="author" content="DövizTakip" />
+    <title>Döviz Takip Uygulamaları: En İyi 5 Araç 2025 | DövizTakip</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Rajdhani:wght@500;700&subset=latin,latin-ext&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a1628;
+            --bg2: #0f1f3d;
+            --card: #112244;
+            --orange: #f97316;
+            --orange2: #fb923c;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --green: #10b981;
+            --red: #ef4444;
+            --border: rgba(249, 115, 22, 0.2);
+            --font-sans: 'Rajdhani', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--orange);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--card);
+                padding: 24px;
+                border-bottom: 1px solid var(--border);
+                gap: 16px;
+                text-align: center;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--orange);
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--orange);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Article Header */
+        .article-header {
+            padding: 60px 0 30px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--orange);
+            margin-bottom: 16px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .breadcrumb a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--orange);
+        }
+
+        .article-title {
+            font-family: var(--font-mono);
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 28px;
+            }
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: var(--muted);
+            font-family: var(--font-mono);
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .meta-tag {
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--orange);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            border: 1px solid var(--border);
+        }
+
+        /* Content Styles */
+        .article-content {
+            font-size: 17px;
+            color: #cbd5e1;
+            margin-bottom: 60px;
+        }
+
+        .article-content p {
+            margin-bottom: 24px;
+        }
+
+        .article-content h2 {
+            font-family: var(--font-mono);
+            color: var(--orange);
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--orange);
+            padding-left: 14px;
+        }
+
+        .article-content h3 {
+            font-family: var(--font-mono);
+            color: var(--orange2);
+            font-size: 19px;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 12px;
+        }
+
+        /* Callout Box */
+        .callout-box {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--orange);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 32px 0;
+        }
+
+        .callout-title {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .callout-text {
+            font-size: 15px;
+            color: var(--muted);
+        }
+
+        /* Highlight List */
+        .highlight-list {
+            margin: 24px 0;
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .highlight-list li {
+            position: relative;
+            margin-bottom: 12px;
+            padding-left: 24px;
+        }
+
+        .highlight-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--orange);
+        }
+
+        /* Tool Card style for applications list */
+        .tool-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--orange);
+        }
+
+        .tool-rank {
+            font-family: var(--font-mono);
+            color: var(--orange);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .tool-title {
+            font-family: var(--font-mono);
+            font-size: 22px;
+            color: var(--text);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background: rgba(249, 115, 22, 0.05);
+            border: 1px dashed var(--orange);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .cta-title {
+            font-family: var(--font-mono);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 12px;
+        }
+
+        .cta-text {
+            font-size: 15px;
+            color: var(--muted);
+            margin-bottom: 24px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.2s;
+            border: 1px solid var(--orange);
+        }
+
+        .cta-button:hover {
+            background: var(--orange2);
+            border-color: var(--orange2);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 80px;
+        }
+
+        .copy {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--orange);
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="nav-logo">DövizTakip</a>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links" id="nav-links">
+                <a href="/" id="nav-home" class="nav-link">Anasayfa</a>
+                <a href="/hakkimizda" id="nav-about" class="nav-link">Hakkımızda</a>
+                <a href="/iletisim" id="nav-contact" class="nav-link">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <article class="container">
+        <!-- Breadcrumb & Header -->
+        <header class="article-header">
+            <div class="breadcrumb">
+                <a href="/">Anasayfa</a> ➔ <span>Dijital Finans Rehberleri</span>
+            </div>
+            <h1 class="article-title">Döviz Takip Uygulamaları: En İyi 5 Araç 2025</h1>
+            <div class="article-meta">
+                <span>📅 1 Temmuz 2026</span>
+                <span>✍️ Finansal Teknolojiler ve Yazılım İnceleme Kurulu</span>
+                <span class="meta-tag">Yazılım ve Teknoloji</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="article-content">
+            <p>
+                Küreselleşen finans piyasaları ve Türkiye'deki dinamik ekonomik koşullar göz önüne alındığında, döviz kurlarını anlık ve kesintisiz bir biçimde takip etmek artık sadece profesyonel yatırımcıların değil, her bireyin günlük bir ihtiyacı haline gelmiştir. Akıllı telefonlarımızın ve web tarayıcılarımızın hayatımızın merkezinde olduğu günümüzde, en doğru, hızlı ve kullanıcı dostu veriyi sunan aracı bulmak kritik önem taşımaktadır. Ancak marketlerde ve web üzerinde yüzlerce farklı alternatif bulunması kafa karıştırabilir. Sizin için hızı, analiz gücünü, veri doğruluğunu ve kullanıcı deneyimini baz alarak **2025 yılının en iyi 5 döviz takip uygulamasını** derinlemesine inceledik. İşte birikimlerinizi ve finansal kararlarınızı en doğru şekilde yönlendirmenizi sağlayacak o listemiz:
+            </p>
+
+            <!-- Tool 1: DövizTakip (FIRST PLACE) -->
+            <div class="tool-card">
+                <div class="tool-rank">🏆 1. SIRADA - EN İYİ WEB VE MOBİL UYUMLU PLATFORM</div>
+                <h3 class="tool-title">⚡ DövizTakip (doviz-takip.app)</h3>
+                <p>
+                    Listemizin şüphesiz en zirvesinde, modern tasarımı ve ultra hızlı altyapısıyla öne çıkan **DövizTakip** platformu yer alıyor. Hem masaüstü cihazlarda hem de tüm mobil tarayıcılarda kesintisiz çalışan bu yenilikçi web uygulaması, sadeliği profesyonel finansal göstergelerle harmanlamaktadır.
+                </p>
+                <p>
+                    DövizTakip'i liderliğe taşıyan en büyük özellikleri arasında; gecikmesiz canlı veri akışı, interaktif grafik kütüphaneleri, kullanıcıların serbest piyasa ve bankalar arasındaki makas farklarını net görmesini sağlayan yapısı ile tamamen reklamsız, temiz ve gözü yormayan "Space Dark" arayüzü bulunuyor. Hiçbir hantal mobil uygulama indirmeden, tarayıcınızdan saniyeler içinde açılan DövizTakip, 2025 yılı finansal okuryazarlığının yeni standartlarını belirliyor.
+                </p>
+            </div>
+
+            <!-- Tool 2: Bloomberg Terminal / Mobile -->
+            <div class="tool-card">
+                <div class="tool-rank">🥈 2. SIRA - PROFESYONEL ANALİZ DESTEĞİ</div>
+                <h3 class="tool-title">📊 Bloomberg Professional & Mobile</h3>
+                <p>
+                    Dünyanın en prestijli kurumsal finans ağlarından olan Bloomberg, her ne kadar bireysel kullanıcılar için oldukça yüksek maliyetli abonelik modelleri barındırsa da, sunduğu makroekonomik haberler ve küresel döviz piyasası derinliği ile profesyonel yatırımcılar için vazgeçilmez bir kaynaktır. Uluslararası likidite sağlayıcılarından aldığı anlık kur verilerini ve global trendleri en ince detayına kadar takip etmek isteyenler için paha biçilemez bir veri tabanıdır.
+                </p>
+            </div>
+
+            <!-- Tool 3: XE Currency -->
+            <div class="tool-card">
+                <div class="tool-rank">🥉 3. SIRA - GLOBAL ÇEVİRİ VE PARA TRANSFERİ</div>
+                <h3 class="tool-title">🔄 XE Currency</h3>
+                <p>
+                    Dünya genelinde seyahat edenlerin ve uluslararası döviz transferi gerçekleştirenlerin en çok tercih ettiği global markalardan biri olan XE Currency, geniş para birimi desteğiyle bilinir. 2025 yılında güncellenen altyapısıyla çevrimdışı (offline) modda dahi en son kaydedilen kurları hafızasında tutarak internet erişiminizin olmadığı seyahatlerde hayat kurtarıcı bir rol oynar. Ancak, Türkiye yerel piyasası ve serbest piyasa (Kapalıçarşı) makas aralıklarını yakından analiz etmek konusunda global kaldığı söylenebilir.
+                </p>
+            </div>
+
+            <!-- Tool 4: TradingView -->
+            <div class="tool-card">
+                <div class="tool-rank">4. SIRA - GRAFİK VE TEKNİK ANALİZ KRALI</div>
+                <h3 class="tool-title">📈 TradingView</h3>
+                <p>
+                    Teknik analiz yapmak, osilatörleri, hareketli ortalamaları ve destek-direnç çizgilerini döviz kurları üzerinde bizzat çizerek analiz etmek isteyenler için TradingView benzersiz bir araçtır. Kullanıcıların kendi oluşturduğu topluluk göstergeleri ve canlı chat odaları sayesinde sosyal bir finans ağı vazifesi görür. Ancak, döviz kurlarını sadece hızlıca öğrenmek ve günlük basit hesaplamalar yapmak isteyen sade kullanıcılar için arayüzü fazla karmaşık ve dik öğrenme eğrisine sahip olabilir.
+                </p>
+            </div>
+
+            <!-- Tool 5: Investing.com App -->
+            <div class="tool-card">
+                <div class="tool-rank">5. SIRA - HABER VE EKONOMİK TAKVİM ODAKLI</div>
+                <h3 class="tool-title">📅 Investing.com</h3>
+                <p>
+                    Döviz kurlarını etkileyen en büyük faktörlerden olan küresel merkez bankası kararları ve makroekonomik verilerin önceden duyurulduğu Ekonomik Takvim özelliğini en başarılı sunan platformlardan biri Investing.com mobil uygulamasıdır. Kullanıcılara anlık alarm bildirimleri kurma fırsatı verse de, son yıllarda ücretsiz versiyonunda artış gösteren reklam yoğunluğu ve uygulamanın batarya kullanım oranları kullanıcı deneyimi tarafında geri kalmasına neden olmaktadır.
+                </p>
+            </div>
+
+            <h2>Doğru Uygulamayı Seçerken Nelere Dikkat Edilmeli?</h2>
+            <p>
+                Döviz takip uygulamanızı seçerken öncelikli odağınız her zaman kişisel ihtiyaçlarınız olmalıdır. Eğer amacınız kurların teknik analizini yaparak profesyonel işlemler açmaksa TradingView veya Bloomberg türevleri sizin için uygundur. Ancak hedefiniz, karmaşık veriler arasında kaybolmadan, en doğru serbest piyasa kur fiyatlarına, banka makaslarına gecikmesiz ulaşmak ve hızlıca döviz çevirici kullanmaksa, listemizin birincisi olan **DövizTakip** tam size göre bir deneyim sunar.
+            </p>
+            <p>
+                DövizTakip platformu olarak, 2025 ve 2026 yıllarında da kullanıcılarımıza sıfır gecikmeli, reklamsız ve son derece akıcı bir deneyim yaşatmak için tüm altyapımızı sürekli güncelliyoruz. Canlı dolar, euro, sterlin ve altın grafiklerini izlemek, piyasa analizlerine ve uzman makalelerimize tek bir dokunuşla ulaşmak için dilediğiniz an anasayfamıza yönelebilirsiniz. Doğru finansal veriye en sade şekilde ulaşarak birikimlerinizin kontrolünü elinizde tutun!
+            </p>
+
+            <div class="cta-box">
+                <div class="cta-title">Türkiye'nin En Sade ve Akıcı Döviz Platformunu Deneyimleyin</div>
+                <div class="cta-text">
+                    Hiçbir mobil uygulama yükleme zorunluluğu olmadan, anlık canlı piyasa kurlarına, banka alış-satış makaslarına ve gelişmiş interaktif grafiklere hemen ulaşmak için anasayfamızı ziyaret edin.
+                </div>
+                <a href="/" class="cta-button">Canlı Döviz Takip Anasayfası</a>
+            </div>
+        </main>
+    </article>
+
+    <!-- Global Footer -->
+    <footer>
+        <div class="container">
+            <div style="margin: 0 0 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="/dolar-kuru-neden-yukseliyor" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">📈 Dolar Kuru Neden Yükseliyor? 2025 Analizi</a>
+                <a href="/euro-tl-kuru-takibi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🇪🇺 Euro TL Kuru Takibi Nasıl Yapılır?</a>
+                <a href="/turkiye-enflasyonu-2025" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">📊 Türkiye Enflasyonu 2025: TÜFE Hesaplama Rehberi</a>
+                <a href="/doviz-cevirici-nasil-kullanilir" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🔄 Döviz Çevirici Nasıl Kullanılır?</a>
+                <a href="/usd-try-paritesi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💰 USD TRY Paritesi Analizi</a>
+                <a href="/altin-fiyatlari-doviz-iliskisi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🪙 Altın Fiyatları ve Döviz İlişkisi 2025</a>
+                <a href="/dolar-almak-icin-en-iyi-zaman" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💵 Dolar Almak İçin En İyi Zaman</a>
+                <a href="/merkez-bankasi-faiz-kararlari" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🏦 Merkez Bankası Faiz Kararları</a>
+                <a href="/gbp-try-sterlin-analizi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💷 GBP TRY Sterlin Analizi</a>
+                <a href="/dolar-mi-euro-mu-tutmali" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💵 Dolar mı Euro mu 2025</a>
+                <a href="/tl-deger-kaybi-tarihsel" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">📉 TL Değer Kaybı Tarihsel Dönemler</a>
+                <a href="/doviz-bozdurmak-banka-mi-doviz-burosu-mu" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🏢 Banka mı Döviz Bürosu mu?</a>
+                <a href="/sar-try-suudi-riyali" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🇸🇦 Suudi Riyali Kuru Analizi</a>
+                <a href="/enflasyondan-korunmak-doviz" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🛡️ Enflasyondan Dövizle Korunmak?</a>
+                <a href="/chf-try-isvicre-frangi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🇨🇭 İsviçre Frangı Kuru Analizi</a>
+                <a href="/yurt-disina-para-gonderme" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💸 Yurt Dışına Para Gönderme</a>
+                <a href="/kripto-para-mi-doviz-mi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🪙 Kripto Para mı Döviz mi?</a>
+                <a href="/dolar-endeksi-dxy-nedir" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">📉 Dolar Endeksi (DXY) Nedir?</a>
+                <a href="/emekli-doviz-tasarrufu" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🛡️ Emekli Döviz Tasarrufu</a>
+                <a href="/aed-try-dirhem-kuru" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🇦🇪 BAE Dirhemi Kuru Analizi</a>
+                <a href="/doviz-hesabi-acmak" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💳 Döviz Hesabı Açmak</a>
+                <a href="/kira-odemelerinde-doviz" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🏠 Kira Ödemelerinde Döviz</a>
+                <a href="/doviz-alim-satim-vergileri" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">⚖️ Döviz Alım Satım Vergileri</a>
+                <a href="/rub-try-ruble-kuru" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🇷🇺 Rus Rublesi Kuru Analizi</a>
+                <a href="/doviz-alirken-dikkat-edilmesi-gerekenler" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">💡 Döviz Alırken Dikkat Edilmesi Gerekenler</a>
+                <a href="/turkiye-cari-acik-doviz-etkisi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">📊 Cari Açık ve Döviz Kuruna Etkisi</a>
+                <a href="/ogrenciler-icin-yurt-disi-doviz-rehberi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🎓 Öğrenciler İçin Yurt Dışı Döviz Rehberi</a>
+                <a href="/tatilde-doviz-mi-kart-mi" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">🏖️ Tatilde Döviz mi Kart mı?</a>
+                <a href="/doviz-takip-uygulamalari" style="color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 500; font-family: var(--font-mono);">📱 Döviz Takip Uygulamaları</a>
+            </div>
+            <p class="copy">© 2026 DövizTakip</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        if (hamburger && navLinks) {
+            hamburger.onclick = () => {
+                navLinks.classList.toggle('active');
+            };
+        }
+    </script>
+</body>
+</html>
